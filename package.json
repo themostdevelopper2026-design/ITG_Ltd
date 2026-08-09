@@ -1,0 +1,22 @@
+{
+  "name": "itg_group",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "npx tailwindcss -i ./src/css/input.css -o ./public/css/style.css",
+    "dev": "npx tailwindcss -i ./src/css/input.css -o ./public/css/style.css --watch",
+    "serve": "npx serve . -p 3000 --no-clipboard"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "tailwindcss": "^4.3.3"
+  },
+  "dependencies": {
+    "mysql2": "^3.23.2"
+  }
+}

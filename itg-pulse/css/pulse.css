@@ -1,0 +1,83 @@
+/* ITG-Pulse Custom Styles & Animations */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --itg-blue: #003882;
+  --itg-orange: #F28C28;
+  --itg-lightblue: #29ABE2;
+  --itg-darkblue: #3A75E0;
+  --sidebar-bg: #0d1b2e;
+  --bg-main: #f1f5f9;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-main);
+  color: #1e293b;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Transitions */
+.sidebar-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glass effect */
+.glass-header {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Status badges */
+.badge-nouveau { background-color: #ffedd5; color: #c2410c; }
+.badge-contacte { background-color: #dbeafe; color: #1e40af; }
+.badge-qualifie { background-color: #dcfce7; color: #15803d; }
+.badge-negociation { background-color: #fef3c7; color: #b45309; }
+.badge-gagne { background-color: #d1fae5; color: #047857; }
+
+.badge-haute { background-color: #fee2e2; color: #b91c1c; }
+.badge-moyenne { background-color: #fef3c7; color: #b45309; }
+.badge-basse { background-color: #e0f2fe; color: #0369a1; }
+.badge-urgente { background-color: #7f1d1d; color: #ffffff; }
+
+/* Custom Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Active Nav Pill */
+.nav-item-active {
+  background: #1e40af;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+}

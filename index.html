@@ -1,0 +1,2237 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITG Limited </title>
+    <meta name="description"
+        content="ITG Limited accompagne les entreprises dans leur transformation digitale : développement, IA, sécurité, réseau informatique et formation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'itg-blue': '#003882',
+                        'itg-orange': '#F28C28',
+                        'itg-lightblue': '#29ABE2',
+                        'itg-lightbg': '#F5F7FA',
+                        'itg-palebg': '#EAF2FB',
+                        'itg-darkblue': '#3A75E0',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* ─── Page Transitions ─── */
+        #page-content {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        #page-content.fade-out {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+
+        #page-content.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── Scroll Animations ─── */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── Hover Lift ─── */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.12);
+        }
+
+        /* ─── Gradient Primary ─── */
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #003882 0%, #3A75E0 100%);
+        }
+
+        /* ─── Active nav link ─── */
+        nav a.active {
+            color: #003882;
+            font-weight: 600;
+            border-bottom: 2px solid #F28C28;
+        }
+
+        nav a:not(.active) {
+            color: #4B5563;
+        }
+
+        nav a:not(.active):hover {
+            color: #003882;
+        }
+
+        /* ─── Form focus ─── */
+        .form-input:focus {
+            outline: none;
+            border-color: #003882;
+            box-shadow: 0 0 0 3px rgba(0, 56, 130, 0.1);
+        }
+
+        /* ─── FAQ Accordion ─── */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* ─── Hero Background ─── */
+        .hero-bg {
+            background-image: url('public/images/back.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 56, 130, 0.88) 0%, rgba(58, 117, 224, 0.75) 60%, rgba(0, 56, 130, 0.50) 100%);
+        }
+
+        /* ─── Preloader CSS ─── */
+        #preloader {
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+
+        #preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        @keyframes logoSpinY {
+            0% {
+                transform: rotateY(0deg);
+            }
+
+            50% {
+                transform: rotateY(180deg);
+            }
+
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
+        .animate-logo-spin {
+            animation: logoSpinY 1.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes progress3s {
+            0% {
+                width: 0%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        .animate-progress-3s {
+            animation: progress3s 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+    </style>
+</head>
+
+<body class="bg-itg-lightbg text-gray-800 font-sans antialiased overflow-x-hidden">
+
+    <!-- ══════════════ PRELOADER OVERLAY ══════════════ -->
+    <div id="preloader" class="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center">
+        <div class="relative flex items-center justify-center">
+            <!-- Glowing Ring -->
+            <div
+                class="w-40 h-40 rounded-full border-4 border-blue-50 border-t-itg-orange border-r-itg-blue animate-spin shadow-xl">
+            </div>
+            <!-- Centered Logo Spinning Y-axis -->
+            <div class="absolute inset-0 flex items-center justify-center">
+                <img src="public/images/ITG2.png" alt="ITG Limited Loading"
+                    class="h-14 w-auto animate-logo-spin drop-shadow-md">
+            </div>
+        </div>
+        <div class="mt-8 flex flex-col items-center">
+            <span class="text-itg-blue font-bold text-sm tracking-widest uppercase mb-3 animate-pulse">ITG
+                Limited</span>
+            <div class="w-32 h-1.5 bg-gray-100 rounded-full overflow-hidden shadow-inner">
+                <div id="preloader-bar"
+                    class="h-full bg-gradient-to-r from-itg-blue via-itg-lightblue to-itg-orange animate-progress-3s">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════ HEADER ══════════════ -->
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100 shadow-sm">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Group Logo + Nav closer together -->
+                <div class="flex items-center space-x-6 lg:space-x-8">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0">
+                        <a href="#" data-page="accueil" class="nav-link cursor-pointer">
+                            <img class="h-14 w-auto" src="public/images/ITG2.png" alt="ITG Limited Logo">
+                        </a>
+                    </div>
+
+                    <!-- Desktop Nav -->
+                    <nav id="desktop-nav" class="hidden md:flex space-x-3 lg:space-x-4 items-center">
+                        <a data-page="accueil" class="nav-link cursor-pointer py-1 transition-colors active">Accueil</a>
+                        <a data-page="services" class="nav-link cursor-pointer py-1 transition-colors">Services</a>
+                        <a data-page="formations" class="nav-link cursor-pointer py-1 transition-colors">Formations</a>
+                        <a data-page="projets" class="nav-link cursor-pointer py-1 transition-colors">Réalisations</a>
+                        <a data-page="apropos" class="nav-link cursor-pointer py-1 transition-colors">À Propos</a>
+                        <a data-page="contact" class="nav-link cursor-pointer py-1 transition-colors">Contact</a>
+                        <a data-page="contact"
+                            class="nav-link cursor-pointer px-3.5 py-2 bg-itg-orange text-white font-medium rounded-full hover:bg-orange-600 hover:shadow-lg transition-all duration-300 text-xs lg:text-sm">
+                            Demande de devis
+                        </a>
+                        <a href="itg-pulse/student-login.html"
+                            class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-itg-lightblue text-white font-medium rounded-full hover:bg-sky-600 hover:shadow-lg transition-all duration-300 text-xs lg:text-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+                            S'inscrire aux formations
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- Login Button -->
+                <div class="hidden md:flex items-center">
+                    <a href="itg-pulse/login.html"
+                        class="inline-flex items-center gap-2 px-4 py-2.5 bg-itg-blue text-white font-medium rounded-full hover:bg-blue-800 hover:shadow-lg transition-all duration-300 text-xs lg:text-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1">
+                            </path>
+                        </svg>
+                        Se connecter
+                    </a>
+                </div>
+
+                <!-- Mobile button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-600 hover:text-itg-blue p-2">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full z-40">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a data-page="accueil"
+                    class="nav-link block px-3 py-3 rounded-md cursor-pointer hover:bg-gray-50">Accueil</a>
+                <a data-page="services"
+                    class="nav-link block px-3 py-3 rounded-md cursor-pointer hover:bg-gray-50">Services</a>
+                <a data-page="formations"
+                    class="nav-link block px-3 py-3 rounded-md cursor-pointer hover:bg-gray-50">Formations</a>
+                <a data-page="projets"
+                    class="nav-link block px-3 py-3 rounded-md cursor-pointer hover:bg-gray-50">Réalisations</a>
+                <a data-page="apropos" class="nav-link block px-3 py-3 rounded-md cursor-pointer hover:bg-gray-50">À
+                    Propos</a>
+                <a data-page="contact"
+                    class="nav-link block px-3 py-3 rounded-md cursor-pointer hover:bg-gray-50">Contact</a>
+                <a data-page="contact"
+                    class="nav-link block px-3 py-3 rounded-md cursor-pointer text-itg-orange font-semibold hover:bg-orange-50">Demande
+                    de devis</a>
+                <a href="itg-pulse/student-login.html"
+                    class="flex items-center gap-2 px-3 py-3 rounded-md text-itg-lightblue font-semibold hover:bg-sky-50">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+                    S'inscrire aux formations
+                </a>
+                <hr class="my-2 border-gray-100">
+                <a href="itg-pulse/login.html"
+                    class="flex items-center gap-2 px-3 py-3 rounded-md text-itg-blue font-semibold hover:bg-blue-50">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1">
+                        </path>
+                    </svg>
+                    Se connecter
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ══════════════ PAGE CONTENT (SPA) ══════════════ -->
+    <div id="page-content" class="fade-in"></div>
+
+    <!-- ══════════════ FOOTER (Shared) ══════════════ -->
+    <footer class="bg-gray-900 text-white pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div>
+
+                    <img src="public\images\ITG2.png" alt="ITG Logo"
+                        class="h-12 bg-white p-1 rounded mb-6">
+                    <p class="text-gray-400 mb-6 text-sm">
+                        <span class="text-[#29ABE2] font-bold">I</span>nnovation
+                        <span class="text-orange-300 font-bold">T</span>echnology
+                        <span class="text-[#29ABE2] font-bold">G</span>roup Limited accompagne votre entreprise à chaque
+                        étape de sa transformation numérique.
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="#"
+                            class="w-9 h-9 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-itg-blue transition-all"><svg
+                                class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg></a>
+                        <a href="#"
+                            class="w-9 h-9 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-blue-600 transition-all"><svg
+                                class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg></a>
+                        <a href="#"
+                            class="w-9 h-9 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-pink-600 transition-all"><svg
+                                class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-base font-bold mb-5 text-white">Liens rapides</h4>
+                    <ul class="space-y-2.5">
+                        <li><a data-page="accueil"
+                                class="nav-link cursor-pointer text-gray-400 hover:text-itg-orange transition-colors text-sm">Accueil</a>
+                        </li>
+                        <li><a data-page="services"
+                                class="nav-link cursor-pointer text-gray-400 hover:text-itg-orange transition-colors text-sm">Nos
+                                Services</a></li>
+                        <li><a data-page="formations"
+                                class="nav-link cursor-pointer text-gray-400 hover:text-itg-orange transition-colors text-sm">Formations</a>
+                        </li>
+                        <li><a data-page="projets"
+                                class="nav-link cursor-pointer text-gray-400 hover:text-itg-orange transition-colors text-sm">Réalisations</a>
+                        </li>
+                        <li><a data-page="apropos"
+                                class="nav-link cursor-pointer text-gray-400 hover:text-itg-orange transition-colors text-sm">À
+                                Propos</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-base font-bold mb-5 text-white">Expertises</h4>
+                    <ul class="space-y-2.5">
+                        <li><a data-page="services"
+                                class="nav-link cursor-pointer text-gray-400 hover:text-itg-orange transition-colors text-sm">Développement
+                                logiciel</a></li>
+                        <li><a data-page="services"
+                                class="nav-link cursor-pointer text-gray-400 hover:text-itg-orange transition-colors text-sm">Automatisation
+                                & IA</a></li>
+                        <li><a data-page="services"
+                                class="nav-link cursor-pointer text-gray-400 hover:text-itg-orange transition-colors text-sm">Cybersécurité
+                                & Réseaux</a></li>
+                        <li><a data-page="services"
+                                class="nav-link cursor-pointer text-gray-400 hover:text-itg-orange transition-colors text-sm">Équipement
+                                IT</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-base font-bold mb-5 text-white">Contact</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-start gap-3"><svg class="h-5 w-5 text-itg-orange flex-shrink-0 mt-0.5"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg><span>Bujumbura, Burundi<br>(Centre-ville, Av. Patrice Lumumba)</span></li>
+                        <li class="flex items-center gap-3"><svg class="h-5 w-5 text-itg-orange flex-shrink-0"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                </path>
+                            </svg><span>+225 00 00 00 00 00</span></li>
+                        <li class="flex items-center gap-3"><svg class="h-5 w-5 text-itg-orange flex-shrink-0"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                </path>
+                            </svg><span>contact@itg-limited.com</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                    &copy; 2026
+                    <span class="text-white">Powered by</span>
+                    <span class="text-[#29ABE2] font-bold">I</span><span class="text-white">nnovation</span>
+                    <span class="text-orange-300 font-bold">T</span><span class="text-white">echnology</span>
+                    <span class="text-[#29ABE2] font-bold">G</span><span class="text-white">roup</span>
+                    <span class="text-green-500">Ltd</span>.
+                    Tous droits réservés.
+                </p>
+                <div class="space-x-4 text-sm text-gray-500">
+                    <a href="#" class="hover:text-white transition-colors">Mentions légales</a>
+                    <a href="#" class="hover:text-white transition-colors">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════
+         PAGE TEMPLATES (hidden — rendered by JS)
+         ═══════════════════════════════════════════ -->
+
+    <!-- ── PAGE: ACCUEIL ── -->
+    <template id="tpl-accueil">
+        <!-- Hero Section -->
+        <section class="hero-bg relative min-h-[600px] flex items-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-18 lg:py-15">
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <!-- Texte -->
+                    <div class="lg:w-1/2 text-white animate-on-scroll">
+                        <span
+                            class="inline-block py-1 px-3 rounded-full bg-white/10 border border-white/20 text-white/80 font-medium text-sm mb-6 uppercase tracking-widest backdrop-blur-sm">Transformation
+                            Numérique</span>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                            Innover pour <br />transformer <span class="text-itg-orange">votre avenir</span>
+                        </h1>
+
+                        <p class="text-lg text-blue-100 mb-10 leading-relaxed max-w-xl">
+                            <span class="text-[#29ABE2] font-bold">I</span>nnovation
+                            <span class="text-orange-300 font-bold">T</span>echnology
+                            <span class="text-[#29ABE2] font-bold">G</span>roup Limited accompagne les entreprises et
+                            les talents dans leur transformation digitale : développement, automatisation, sécurité,
+                            réseau informatique, formation et équipement informatique.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a data-page="services"
+                                class="nav-link cursor-pointer px-8 py-4 bg-itg-orange text-white font-bold rounded-full shadow-lg hover:bg-orange-500 hover:-translate-y-1 transition-all duration-300 text-center">
+                                Découvrir nos services
+                            </a>
+                            <a data-page="contact"
+                                class="nav-link cursor-pointer px-8 py-4 bg-white/10 backdrop-blur-sm text-white border-2 border-white/40 font-semibold rounded-full hover:bg-white/20 transition-all duration-300 text-center">
+                                Nous contacter
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Image connexion.jpg flottante -->
+                    <div class="lg:w-1/2 flex justify-center animate-on-scroll" style="animation-delay:0.2s">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-itg-lightblue/20 rounded-3xl blur-2xl scale-110"></div>
+                            <img src="public/images/connexion.jpg" alt="Écosystème numérique ITG"
+                                class="relative z-10 rounded-3xl shadow-2xl w-full max-w-md object-cover border-4 border-white/20">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nos pôles d'expertise -->
+        <section class="py-20 bg-itg-palebg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-14 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-itg-blue mb-4">Une expertise complète, sous un même
+                        toit</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">De la conception d'un logiciel à la sécurisation
+                        de votre réseau, en passant par la formation de vos équipes, ITG Ltd couvre tous les aspects de
+                        votre transformation numérique.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-lift animate-on-scroll">
+                        <div class="w-14 h-14 rounded-xl bg-blue-50 flex items-center justify-center mb-6"><svg
+                                class="w-7 h-7 text-itg-lightblue" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg></div>
+                        <h3 class="text-xl font-bold text-itg-blue mb-3">Développement</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Systèmes de gestion, applications web et
+                            mobile, sites vitrines et e-commerce : nous donnons vie à vos projets numériques.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-lift animate-on-scroll"
+                        style="animation-delay:0.1s">
+                        <div class="w-14 h-14 rounded-xl bg-orange-50 flex items-center justify-center mb-6"><svg
+                                class="w-7 h-7 text-itg-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg></div>
+                        <h3 class="text-xl font-bold text-itg-blue mb-3">Automatisation & IA</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Robotique, intelligence artificielle et
+                            automatisation de processus pour gagner en productivité et en performance.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-lift animate-on-scroll"
+                        style="animation-delay:0.2s">
+                        <div class="w-14 h-14 rounded-xl bg-green-50 flex items-center justify-center mb-6"><svg
+                                class="w-7 h-7 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                                </path>
+                            </svg></div>
+                        <h3 class="text-xl font-bold text-itg-blue mb-3">Sécurité & réseau</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Cyber sécurité et conception de réseaux LAN/MAN
+                            et WIFI pour protéger et connecter votre entreprise.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-lift animate-on-scroll">
+                        <div class="w-14 h-14 rounded-xl bg-purple-50 flex items-center justify-center mb-6"><svg
+                                class="w-7 h-7 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                </path>
+                            </svg></div>
+                        <h3 class="text-xl font-bold text-itg-blue mb-3">Formation</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Des formations pratiques en informatique,
+                            programmation, cyber sécurité et réseau pour monter en compétences.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-lift animate-on-scroll"
+                        style="animation-delay:0.1s">
+                        <div class="w-14 h-14 rounded-xl bg-yellow-50 flex items-center justify-center mb-6"><svg
+                                class="w-7 h-7 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                </path>
+                            </svg></div>
+                        <h3 class="text-xl font-bold text-itg-blue mb-3">Équipement informatique</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Importation et vente de matériel informatique
+                            de qualité pour équiper durablement votre entreprise.</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-lift animate-on-scroll"
+                        style="animation-delay:0.2s">
+                        <div class="w-14 h-14 rounded-xl bg-green-50 flex items-center justify-center mb-6"><svg
+                                class="w-7 h-7 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                                </path>
+                            </svg></div>
+                        <h3 class="text-xl font-bold text-itg-blue mb-3">Base de donnée et Administration</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Conception et Administration des differentes bases des données
+                            pour digitaliser votre entreprise et Réaliser vos projets.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chiffres clés -->
+        <section class="bg-gradient-primary py-16 text-white shadow-2xl">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/20">
+                    <div class="animate-on-scroll">
+                        <div class="text-4xl md:text-5xl font-bold mb-2">150+</div>
+                        <div class="text-blue-100 text-sm uppercase tracking-wide font-medium">Projets réalisés</div>
+                    </div>
+                    <div class="animate-on-scroll" style="animation-delay:0.1s">
+                        <div class="text-4xl md:text-5xl font-bold mb-2">98%</div>
+                        <div class="text-blue-100 text-sm uppercase tracking-wide font-medium">Clients satisfaits</div>
+                    </div>
+                    <div class="animate-on-scroll" style="animation-delay:0.2s">
+                        <div class="text-4xl md:text-5xl font-bold mb-2">50+</div>
+                        <div class="text-blue-100 text-sm uppercase tracking-wide font-medium">Experts</div>
+                    </div>
+                    <div class="animate-on-scroll" style="animation-delay:0.3s">
+                        <div class="text-4xl md:text-5xl font-bold mb-2">10+</div>
+                        <div class="text-blue-100 text-sm uppercase tracking-wide font-medium">Années d'expérience</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pourquoi choisir ITG -->
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:flex lg:items-center gap-16">
+                    <div class="lg:w-1/2 mb-12 lg:mb-0 animate-on-scroll">
+                        <h2 class="text-3xl md:text-4xl font-bold text-itg-blue mb-6">Pourquoi les entreprises nous font
+                            confiance</h2>
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">Parce que nous ne vendons pas seulement
+                            des solutions techniques : nous construisons des partenariats durables. Notre équipe allie
+                            expertise technique, écoute et accompagnement sur le long terme.</p>
+                        <div class="space-y-5">
+                            <div class="flex items-start">
+                                <div
+                                    class="flex-shrink-0 mt-0.5 w-8 h-8 rounded-full bg-itg-palebg text-itg-blue flex items-center justify-center">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7"></path>
+                                    </svg></div>
+                                <p class="ml-4 text-gray-700 font-medium">Une équipe d'experts certifiés et passionnés
+                                </p>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="flex-shrink-0 mt-0.5 w-8 h-8 rounded-full bg-itg-palebg text-itg-blue flex items-center justify-center">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7"></path>
+                                    </svg></div>
+                                <p class="ml-4 text-gray-700 font-medium">Des solutions sur mesure, jamais des
+                                    copier-coller</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="flex-shrink-0 mt-0.5 w-8 h-8 rounded-full bg-itg-palebg text-itg-blue flex items-center justify-center">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7"></path>
+                                    </svg></div>
+                                <p class="ml-4 text-gray-700 font-medium">Un accompagnement de A à Z, du conseil au
+                                    support</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="flex-shrink-0 mt-0.5 w-8 h-8 rounded-full bg-itg-palebg text-itg-blue flex items-center justify-center">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7"></path>
+                                    </svg></div>
+                                <p class="ml-4 text-gray-700 font-medium">Une veille technologique constante pour rester
+                                    à la pointe</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 animate-on-scroll">
+                        <div class="relative">
+                            <div class="bg-itg-palebg rounded-3xl p-6 lg:p-10 relative overflow-hidden">
+                                <div
+                                    class="absolute -right-10 -top-10 w-40 h-40 bg-itg-lightblue opacity-20 rounded-full blur-2xl">
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Équipe ITG"
+                                    class="rounded-2xl shadow-xl relative z-10 w-full object-cover h-[350px]">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Réalisations aperçu -->
+        <section class="py-24 bg-itg-lightbg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 animate-on-scroll">
+                    <div class="max-w-2xl">
+                        <h2 class="text-3xl md:text-4xl font-bold text-itg-blue mb-4">Ils nous ont fait confiance</h2>
+                        <p class="text-lg text-gray-600">Quelques-uns des projets qui illustrent notre savoir-faire.</p>
+                    </div>
+                    <a data-page="projets"
+                        class="nav-link cursor-pointer mt-6 md:mt-0 inline-flex items-center text-itg-orange font-semibold hover:text-orange-600 transition-colors">Voir
+                        tous nos projets <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg></a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-sm hover-lift border border-gray-100 group animate-on-scroll">
+                        <div class="h-48 overflow-hidden relative"><img
+                                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                                alt="Web"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-6"><span
+                                class="text-xs font-bold text-itg-lightblue uppercase tracking-wider mb-2 block">Développement
+                                Web</span>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Plateforme E-commerce B2B</h3>
+                            <p class="text-gray-600 text-sm">Création d'une solution sur mesure pour la gestion des
+                                commandes pour un leader industriel.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover-lift border border-gray-100 group animate-on-scroll"
+                        style="animation-delay:0.1s">
+                        <div class="h-48 overflow-hidden relative"><img
+                                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                                alt="Réseau"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-6"><span
+                                class="text-xs font-bold text-itg-orange uppercase tracking-wider mb-2 block">Réseau &
+                                Sécurité</span>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Refonte Infrastructure MAN</h3>
+                            <p class="text-gray-600 text-sm">Déploiement d'un réseau fibre inter-sites ultra-sécurisé
+                                avec redondance totale.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover-lift border border-gray-100 group animate-on-scroll"
+                        style="animation-delay:0.2s">
+                        <div class="h-48 overflow-hidden relative"><img
+                                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                                alt="Formation"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-6"><span
+                                class="text-xs font-bold text-purple-500 uppercase tracking-wider mb-2 block">Formation</span>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Upskilling Cybersécurité</h3>
+                            <p class="text-gray-600 text-sm">Programme de formation intensif de 3 mois pour une équipe
+                                DSI bancaire.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Témoignages -->
+        <section class="py-24 bg-itg-palebg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold text-itg-blue mb-16">Ce que disent nos clients</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm relative"><svg
+                            class="absolute top-4 right-4 w-10 h-10 text-gray-100" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                        </svg>
+                        <p class="text-gray-600 mb-6 italic">"L'équipe d'ITG a compris notre besoin dès la première
+                            réunion. Le système a révolutionné notre productivité."</p>
+                        <div class="flex items-center"><img
+                                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                                alt="Marc D." class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div class="text-left">
+                                <h5 class="font-bold text-gray-900">Marc Dubois</h5><span
+                                    class="text-xs text-gray-500">DG, LogisTech</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm relative"><svg
+                            class="absolute top-4 right-4 w-10 h-10 text-gray-100" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                        </svg>
+                        <p class="text-gray-600 mb-6 italic">"L'audit de sécurité et les solutions d'ITG nous ont permis
+                            de protéger efficacement nos données sensibles."</p>
+                        <div class="flex items-center"><img
+                                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                                alt="Sophie L." class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div class="text-left">
+                                <h5 class="font-bold text-gray-900">Sophie Leroy</h5><span
+                                    class="text-xs text-gray-500">DSI, FinancePlus</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm relative"><svg
+                            class="absolute top-4 right-4 w-10 h-10 text-gray-100" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                        </svg>
+                        <p class="text-gray-600 mb-6 italic">"Une formation technique poussée et des formateurs issus du
+                            terrain. Nos équipes sont ressorties grandies."</p>
+                        <div class="flex items-center"><img
+                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                                alt="Amadou S." class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div class="text-left">
+                                <h5 class="font-bold text-gray-900">Amadou Sylla</h5><span
+                                    class="text-xs text-gray-500">DRH, TechIndustries</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Final -->
+        <section class="py-20 bg-itg-blue relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-itg-blue via-[#1853A8] to-itg-darkblue"></div>
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-white mb-6">Prêt à transformer votre entreprise ?</h2>
+                <p class="text-xl text-blue-100 mb-10">Parlons de votre projet. Notre équipe vous répond sous 24h.</p>
+                <a data-page="contact"
+                    class="nav-link cursor-pointer inline-block px-8 py-4 bg-itg-orange text-white font-bold rounded-full shadow-lg hover:bg-orange-500 hover:-translate-y-1 transition-all duration-300">Demander
+                    un devis gratuit</a>
+            </div>
+        </section>
+    </template>
+
+    <!-- ── PAGE: SERVICES ── -->
+    <template id="tpl-services">
+        <section class="relative text-white py-32 lg:py-40 bg-cover bg-center overflow-hidden"
+            style="background-image: url('public/images/background.png');">
+            <div class="absolute inset-0 z-0 bg-itg-blue/85">
+                <div
+                    class="absolute right-0 top-0 w-96 h-96 bg-itg-lightblue/20 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2">
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <nav class="flex mb-4 text-sm font-medium text-blue-200">
+                    <ol class="inline-flex items-center space-x-1">
+                        <li><a data-page="accueil" class="nav-link cursor-pointer hover:text-white">Accueil</a></li>
+                        <li>
+                            <div class="flex items-center"><svg class="w-4 h-4 mx-1" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg><span class="text-white">Services</span></div>
+                        </li>
+                    </ol>
+                </nav>
+                <div class="max-w-3xl animate-on-scroll">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Nos services</h1>
+                    <p class="text-lg text-blue-100 font-light leading-relaxed">Du développement au cyber sécurité, en
+                        passant par l'automatisation et l'intelligence artificielle : <span class="text-white">Powered
+                            by</span>
+                        <span class="text-[#29ABE2] font-bold">I</span>
+                        <span class="text-orange-300 font-bold">T</span>
+                        <span class="text-[#29ABE2] font-bold">G</span>
+                        Ltd accompagne votre entreprise à chaque étape de sa transformation numérique.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="py-16 bg-white border-b border-gray-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
+                <p class="text-xl text-gray-600 leading-relaxed font-light">Chez
+                    <span class="text-[#003882] font-bold">I</span>
+                    <span class="text-orange-300 font-bold">T</span>
+                    <span class="text-[#29ABE2] font-bold">G</span>, l'innovation n'est pas un mot à la mode, c'est
+                    notre métier. Nous concevons, développons et sécurisons les outils numériques qui font avancer votre
+                    entreprise, tout en formant vos équipes et en équipant vos infrastructures.
+                </p>
+            </div>
+        </section>
+
+        <!-- Pôle Développement -->
+        <section class="py-24 bg-itg-palebg" id="svc-dev">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:flex lg:items-center gap-12 animate-on-scroll">
+                    <div class="lg:w-1/2 mb-10 lg:mb-0">
+                        <div
+                            class="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-itg-blue font-bold text-sm mb-6">
+                            <span class="w-2 h-2 rounded-full bg-itg-blue mr-2"></span>1. Développement</div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-itg-blue mb-6">Développement de solutions sur
+                            mesure</h2>
+                        <p class="text-lg text-gray-600 leading-relaxed mb-8">Nous transformons vos idées en outils
+                            numériques performants, fiables et évolutifs. Que vous ayez besoin d'un système de gestion
+                            interne, d'une application mobile ou d'un site e-commerce, notre équipe conçoit des
+                            solutions adaptées.</p>
+                        <a data-page="contact"
+                            class="nav-link cursor-pointer inline-flex items-center text-itg-orange font-bold hover:text-orange-600 transition-colors">Demandez
+                            un devis gratuit <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg></a>
+                    </div>
+                    <div class="lg:w-1/2 grid gap-5">
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover-lift">
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">Systèmes de gestion (ERP, RH…)</h3>
+                            <p class="text-gray-600 text-sm">Logiciels sur mesure qui centralisent vos données et
+                                automatisent vos opérations quotidiennes.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover-lift">
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">Applications web et mobile</h3>
+                            <p class="text-gray-600 text-sm">Applications intuitives, rapides et sécurisées, compatibles
+                                tous appareils, pour tout usage.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover-lift">
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">Sites vitrines & E-commerce</h3>
+                            <p class="text-gray-600 text-sm">Sites optimisés SEO et conversion, avec gestion des
+                                paiements, stocks et commandes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pôle IA -->
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:flex lg:flex-row-reverse lg:items-center gap-12 animate-on-scroll">
+                    <div class="lg:w-1/2 mb-10 lg:mb-0">
+                        <div
+                            class="inline-flex items-center px-4 py-2 rounded-full bg-orange-100 text-itg-orange font-bold text-sm mb-6">
+                            <span class="w-2 h-2 rounded-full bg-itg-orange mr-2"></span>2. Automatisation & IA</div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-itg-blue mb-6">Automatisez, optimisez, innovez
+                        </h2>
+                        <p class="text-lg text-gray-600 leading-relaxed mb-8">L'automatisation et l'intelligence
+                            artificielle ne sont plus réservées aux grandes entreprises. ITG démocratise ces
+                            technologies pour vous permettre de gagner en productivité et réduire les erreurs humaines.
+                        </p>
+                        <a data-page="contact"
+                            class="nav-link cursor-pointer inline-flex items-center text-itg-blue font-bold hover:text-itg-lightblue transition-colors">Parlons
+                            de votre projet <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg></a>
+                    </div>
+                    <div class="lg:w-1/2 grid grid-cols-2 gap-5">
+                        <div class="bg-itg-lightbg p-5 rounded-2xl border border-gray-100 hover-lift">
+                            <h3 class="text-base font-bold text-gray-900 mb-2">Robotique</h3>
+                            <p class="text-gray-500 text-sm">Solutions robotiques pour automatiser les tâches
+                                répétitives industrielles ou logistiques.</p>
+                        </div>
+                        <div class="bg-itg-lightbg p-5 rounded-2xl border border-gray-100 hover-lift">
+                            <h3 class="text-base font-bold text-gray-900 mb-2">Intelligence artificielle</h3>
+                            <p class="text-gray-500 text-sm">Analyse prédictive, chatbots, reconnaissance d'image,
+                                traitement du langage naturel.</p>
+                        </div>
+                        <div class="bg-itg-lightbg p-5 rounded-2xl border border-gray-100 hover-lift">
+                            <h3 class="text-base font-bold text-gray-900 mb-2">Systèmes intelligents</h3>
+                            <p class="text-gray-500 text-sm">Maintenance prédictive, recommandations, capteurs
+                                connectés.</p>
+                        </div>
+                        <div class="bg-itg-lightbg p-5 rounded-2xl border border-gray-100 hover-lift">
+                            <h3 class="text-base font-bold text-gray-900 mb-2">Automatisation (RPA)</h3>
+                            <p class="text-gray-500 text-sm">Workflows automatisés : facturation, tickets, reporting,
+                                relances clients.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sécurité & Réseau -->
+        <section class="py-24 bg-itg-palebg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-14 animate-on-scroll">
+                    <div
+                        class="inline-flex items-center px-4 py-2 rounded-full bg-green-100 text-green-700 font-bold text-sm mb-6">
+                        <span class="w-2 h-2 rounded-full bg-green-500 mr-2"></span>3. Sécurité et réseau</div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-itg-blue mb-6">Protégez ce qui compte le plus</h2>
+                    <p class="text-lg text-gray-600">Dans un monde connecté, la sécurité de vos données et la fiabilité
+                        de votre réseau sont essentielles. ITG Limited met son expertise à votre service pour protéger
+                        votre entreprise contre les menaces numériques.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto animate-on-scroll">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Cyber sécurité</h3>
+                        <p class="text-gray-600 mb-6">Audits de sécurité, pare-feu, antivirus, systèmes de détection
+                            d'intrusion et formation aux bonnes pratiques.</p><a data-page="contact"
+                            class="nav-link cursor-pointer inline-flex items-center font-bold text-itg-blue hover:text-itg-orange transition-colors">Demander
+                            un audit <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg></a>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Réseaux informatiques</h3>
+                        <p class="text-gray-600 mb-6">Conception, installation et configuration de réseaux LAN et MAN,
+                            fiables, sécurisés et adaptés à votre organisation.</p><a data-page="contact"
+                            class="nav-link cursor-pointer inline-flex items-center font-bold text-itg-blue hover:text-itg-orange transition-colors">Déployer
+                            un réseau <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Équipement IT -->
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:flex lg:items-center gap-12 animate-on-scroll">
+                    <div class="lg:w-1/2 grid gap-5 mb-10 lg:mb-0">
+                        <div class="bg-itg-palebg p-5 rounded-2xl hover-lift">
+                            <h3 class="text-base font-bold text-gray-900 mb-2">Vente d'équipements IT</h3>
+                            <p class="text-gray-500 text-sm">Ordinateurs, portables et stations de travail avec conseils
+                                personnalisés selon vos besoins.</p>
+                        </div>
+                        <div class="bg-itg-palebg p-5 rounded-2xl hover-lift">
+                            <h3 class="text-base font-bold text-gray-900 mb-2">Serveurs et équipements réseau</h3>
+                            <p class="text-gray-500 text-sm">Serveurs, switchs, routeurs, caméras de surveillance et
+                                solutions de câblage.</p>
+                        </div>
+                        <div class="bg-itg-palebg p-5 rounded-2xl hover-lift">
+                            <h3 class="text-base font-bold text-gray-900 mb-2">Périphériques</h3>
+                            <p class="text-gray-500 text-sm">Imprimantes, scanners, onduleurs et accessoires
+                                informatiques de haute fiabilité.</p>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <div
+                            class="inline-flex items-center px-4 py-2 rounded-full bg-yellow-100 text-yellow-700 font-bold text-sm mb-6">
+                            <span class="w-2 h-2 rounded-full bg-yellow-500 mr-2"></span>4. Équipement informatique
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-itg-blue mb-6">L'équipement informatique, sans
+                            intermédiaire</h2>
+                        <p class="text-lg text-gray-600 mb-8">ITG Ltd importe et commercialise des matériels
+                            informatiques de qualité, sélectionné avec rigueur, pour équiper votre entreprise dans les
+                            meilleures conditions.</p>
+                        <a data-page="contact"
+                            class="nav-link cursor-pointer inline-flex items-center px-6 py-3 bg-itg-orange text-white font-bold rounded-full shadow hover:bg-orange-600 transition-colors">👉
+                            Consultez notre catalogue</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Global -->
+        <section class="py-20 bg-gradient-primary text-white text-center">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 animate-on-scroll">
+                <h2 class="text-4xl font-bold mb-6">Vous ne savez pas quel service choisir ?</h2>
+                <p class="text-xl text-blue-100 mb-10">Nos experts analysent votre situation pour vous orienter vers la
+                    solution la plus adaptée, sans engagement.</p>
+                <a data-page="contact"
+                    class="nav-link cursor-pointer inline-block px-8 py-4 bg-white text-itg-blue font-bold rounded-full shadow-lg hover:bg-itg-palebg transition-all duration-300">Contactez
+                    nos experts</a>
+            </div>
+        </section>
+    </template>
+
+    <!-- ── PAGE: FORMATIONS ── -->
+    <template id="tpl-formations">
+        <section class="relative text-white py-32 lg:py-40 bg-cover bg-center overflow-hidden"
+            style="background-image: url('public/images/background.png');">
+            <div class="absolute inset-0 z-0 bg-itg-blue/85">
+                <div
+                    class="absolute left-1/2 top-0 w-96 h-96 bg-itg-orange/20 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2">
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center animate-on-scroll">
+                <nav class="flex justify-center mb-6 text-sm font-medium text-blue-200">
+                    <ol class="inline-flex items-center space-x-1">
+                        <li><a data-page="accueil" class="nav-link cursor-pointer hover:text-white">Accueil</a></li>
+                        <li>
+                            <div class="flex items-center"><svg class="w-4 h-4 mx-1" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg><span class="text-white">Formations</span></div>
+                        </li>
+                    </ol>
+                </nav>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Nos formations</h1>
+                <p class="text-lg text-blue-100 max-w-3xl mx-auto">Renforcez les compétences numériques de vos équipes
+                    grâce à des formations pratiques, animées par des experts du terrain.</p>
+            </div>
+        </section>
+        <section class="py-16 bg-white border-b border-gray-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
+                <p class="text-xl text-gray-600 leading-relaxed">Chez
+                    <span class="text-[#003882] font-bold">I</span>
+                    <span class="text-orange-300 font-bold">T</span>
+                    <span class="text-[#29ABE2] font-bold">G</span> Ltd, nous croyons que la technologie n'a de valeur
+                    que si les équipes savent s'en servir. Nous proposons un catalogue complet de formations, du niveau
+                    débutant à avancé.
+                </p>
+            </div>
+        </section>
+
+        <!-- Avantages -->
+        <section class="py-16 bg-itg-palebg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white rounded-3xl p-8 md:p-12 shadow-sm animate-on-scroll">
+                    <h2 class="text-2xl md:text-3xl font-bold text-itg-blue mb-8 text-center">Pourquoi se former chez
+                        ITG Ltd ?</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="flex items-start">
+                            <div
+                                class="w-10 h-10 rounded-full bg-blue-100 text-itg-blue flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                                    </path>
+                                </svg></div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-gray-900">Formateurs experts du terrain</h4>
+                                <p class="text-gray-500 text-sm mt-1">Avec une solide expérience pratique.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div
+                                class="w-10 h-10 rounded-full bg-blue-100 text-itg-blue flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z">
+                                    </path>
+                                </svg></div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-gray-900">Groupes réduits</h4>
+                                <p class="text-gray-500 text-sm mt-1">Pour un apprentissage personnalisé.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div
+                                class="w-10 h-10 rounded-full bg-blue-100 text-itg-blue flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
+                                    </path>
+                                </svg></div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-gray-900">Certificat délivré</h4>
+                                <p class="text-gray-500 text-sm mt-1">À l'issue de votre parcours.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div
+                                class="w-10 h-10 rounded-full bg-blue-100 text-itg-blue flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4">
+                                    </path>
+                                </svg></div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-gray-900">Cas pratiques réels</h4>
+                                <p class="text-gray-500 text-sm mt-1">Exercices inspirés de projets réels.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start sm:col-span-2">
+                            <div
+                                class="w-10 h-10 rounded-full bg-blue-100 text-itg-blue flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
+                                    </path>
+                                </svg></div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-gray-900">Présentiel ou en ligne</h4>
+                                <p class="text-gray-500 text-sm mt-1">Des formations flexibles selon vos disponibilités.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Catalogue -->
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-itg-blue mb-4">Catalogue des formations</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Module 1 -->
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col h-full animate-on-scroll">
+                        <div class="h-48 relative">
+                            <img src="public\images\bureautique.png"
+                                alt="Culture informatique" class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-sm font-bold text-itg-blue shadow">
+                                100 000 Fbu/mois</div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex gap-2 mb-3">
+                                <span class="px-2 py-1 bg-blue-50 text-itg-blue text-xs font-bold rounded">3 mois</span>
+                                <span
+                                    class="px-2 py-1 bg-green-50 text-green-700 text-xs font-bold rounded">Débutant</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Initiation à l'informatique générale</h3>
+                            <p class="text-gray-600 text-sm mb-6 flex-grow">Maîtriser le fonctionnement d'un ordinateur
+                                et les outils bureautiques essentiels : Word, Excel, PowerPoint et Publisher.</p>
+                            <a data-page="contact"
+                                class="nav-link cursor-pointer w-full text-center px-4 py-2 bg-itg-orange text-itg-blue font-bold rounded-full shadow-lg hover:bg-orange-500 transition-all duration-300">S'inscrire</a>
+                        </div>
+                    </div>
+
+                    <!-- Module 2 -->
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col h-full animate-on-scroll">
+                        <div class="h-48 relative">
+                            <img src="public\images\batabase.png"
+                                alt="Base de données" class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-sm font-bold text-itg-blue shadow">
+                                150 000 Fbu/mois</div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex gap-2 mb-3">
+                                <span class="px-2 py-1 bg-blue-50 text-itg-blue text-xs font-bold rounded">3 mois</span>
+                                <span class="px-2 py-1 bg-yellow-50 text-yellow-700 text-xs font-bold rounded">Interm. à
+                                    avancé</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Base de données &amp; administration</h3>
+                            <p class="text-gray-600 text-sm mb-6 flex-grow">Concevoir, interroger et administrer des
+                                bases de données relationnelles : MySQL, PostgreSQL, Oracle.</p>
+                            <a data-page="contact"
+                                class="nav-link cursor-pointer w-full text-center px-4 py-2 bg-itg-orange text-itg-blue font-bold rounded-full shadow-lg hover:bg-orange-500 transition-all duration-300">S'inscrire</a>
+                        </div>
+                    </div>
+
+                    <!-- Module 3 -->
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col h-full animate-on-scroll">
+                        <div class="h-50 relative">
+                            <img src="public\images\web_development.PNG"
+                                alt="Programmation web" class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-sm font-bold text-itg-blue shadow">
+                                150 000 Fbu/mois</div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex gap-2 mb-3">
+                                <span class="px-2 py-1 bg-blue-50 text-itg-blue text-xs font-bold rounded">3 mois</span>
+                                <span class="px-2 py-1 bg-green-50 text-green-700 text-xs font-bold rounded">Déb. à
+                                    interm.</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Programmation web</h3>
+                            <p class="text-gray-600 text-sm mb-6 flex-grow">Concevoir des sites et applications web
+                                modernes : HTML, CSS, JavaScript et frameworks actuels.</p>
+                            <a data-page="contact"
+                                class="nav-link cursor-pointer w-full text-center px-4 py-2 bg-itg-orange text-itg-blue font-bold rounded-full shadow-lg hover:bg-orange-500 transition-all duration-300">S'inscrire</a>
+                        </div>
+                    </div>
+
+                    <!-- Module 4 -->
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col h-full animate-on-scroll">
+                        <div class="h-50 relative">
+                            <img src="public\images\design_mobile.png" alt="Programmation mobile"
+                                class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-sm font-bold text-itg-blue shadow">
+                                200 000 Fbu/mois</div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex gap-2 mb-3">
+                                <span class="px-2 py-1 bg-blue-50 text-itg-blue text-xs font-bold rounded">durée:3
+                                    mois</span>
+                                <span
+                                    class="px-2 py-1 bg-yellow-50 text-yellow-700 text-xs font-bold rounded">Intermédiaire</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Programmation mobile</h3>
+                            <p class="text-gray-600 text-sm mb-6 flex-grow">Développement d'applications mobiles natives
+                                et multiplateformes, de la conception à la mise en ligne.</p>
+                            <a data-page="contact"
+                                class="nav-link cursor-pointer w-full text-center px-4 py-2 bg-itg-orange text-itg-blue font-bold rounded-full shadow-lg hover:bg-orange-500 transition-all duration-300">S'inscrire</a>
+                        </div>
+                    </div>
+
+                    <!-- Module 5 -->
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col h-full animate-on-scroll">
+                        <div class="h-48 relative">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80"
+                                alt="E-commerce" class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-sm font-bold text-itg-blue shadow">
+                                120 000 Fbu/mois</div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex gap-2 mb-3">
+                                <span class="px-2 py-1 bg-blue-50 text-itg-blue text-xs font-bold rounded">durée:3
+                                    mois</span>
+                                <span class="px-2 py-1 bg-green-50 text-green-700 text-xs font-bold rounded">Déb. à
+                                    interm.</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Conception web &amp; E-commerce</h3>
+                            <p class="text-gray-600 text-sm mb-6 flex-grow">Créer des sites vitrines et boutiques en
+                                ligne performantes (maquette, SEO, paiements).</p>
+                            <a data-page="contact"
+                                class="nav-link cursor-pointer w-full text-center px-4 py-2 bg-itg-orange text-itg-blue font-bold rounded-full shadow-lg hover:bg-orange-500 transition-all duration-300">S'inscrire</a>
+                        </div>
+                    </div>
+
+                    <!-- Module 6 -->
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col h-full animate-on-scroll">
+                        <div class="h-50 relative">
+                            <img src="public\images\Automatisation.png" alt="Automatisation"
+                                class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-sm font-bold text-itg-blue shadow">
+                                200 000 Fbu/mois</div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex gap-2 mb-3">
+                                <span class="px-2 py-1 bg-blue-50 text-itg-blue text-xs font-bold rounded">durée:3
+                                    mois</span>
+                                <span
+                                    class="px-2 py-1 bg-yellow-50 text-yellow-700 text-xs font-bold rounded">Intermédiaire</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Automatisation</h3>
+                            <p class="text-gray-600 text-sm mb-6 flex-grow">Outils et techniques d'automatisation pour
+                                optimiser vos processus métier et gagner en efficacité.</p>
+                            <a data-page="contact"
+                                class="nav-link cursor-pointer w-full text-center px-4 py-2 bg-itg-orange text-itg-blue font-bold rounded-full shadow-lg hover:bg-orange-500 transition-all duration-300">S'inscrire</a>
+                        </div>
+                    </div>
+
+                    <!-- Module 7 -->
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col h-full animate-on-scroll">
+                        <div class="h-50 relative">
+                            <img src="public\images\reseau_design.png"
+                                alt="Réseaux" class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-sm font-bold text-itg-blue shadow">
+                                150 000 Fbu/mois</div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex gap-2 mb-3">
+                                <span class="px-2 py-1 bg-blue-50 text-itg-blue text-xs font-bold rounded">3 mois</span>
+                                <span
+                                    class="px-2 py-1 bg-yellow-50 text-yellow-700 text-xs font-bold rounded">Intermédiaire</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Réseaux informatiques</h3>
+                            <p class="text-gray-600 text-sm mb-6 flex-grow">Fondamentaux des réseaux (LAN, MAN),
+                                configuration, maintenance et sécurité d'infrastructures.</p>
+                            <a data-page="contact"
+                                class="nav-link cursor-pointer w-full text-center px-4 py-2 bg-itg-orange text-itg-blue font-bold rounded-full shadow-lg hover:bg-orange-500 transition-all duration-300">S'inscrire</a>
+                        </div>
+                    </div>
+
+                    <!-- Module 8 -->
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col h-full animate-on-scroll">
+                        <div class="h-50 relative">
+                            <img src="public\images\Cybersecurite.png" alt="Cyber sécurité"
+                                class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-sm font-bold text-itg-blue shadow">
+                                200 000 Fbu/mois</div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex gap-2 mb-3">
+                                <span class="px-2 py-1 bg-blue-50 text-itg-blue text-xs font-bold rounded">3 mois</span>
+                                <span
+                                    class="px-2 py-1 bg-yellow-50 text-yellow-700 text-xs font-bold rounded">Intermédiaire</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Cyber sécurité</h3>
+                            <p class="text-gray-600 text-sm mb-6 flex-grow">Comprendre les menaces numériques et
+                                apprendre les bonnes pratiques pour protéger vos données et systèmes.</p>
+                            <a data-page="contact"
+                                class="nav-link cursor-pointer w-full text-center px-4 py-2 bg-itg-orange text-itg-blue font-bold rounded-full shadow-lg hover:bg-orange-500 transition-all duration-300">S'inscrire</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-gradient-primary text-white text-center">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 animate-on-scroll">
+                <h2 class="text-4xl font-bold mb-6">Prêt à monter en compétences ?</h2>
+                <p class="text-xl text-blue-100 mb-10">Consultez notre calendrier ou contactez-nous pour une formation
+                    sur mesure.</p>
+                <a data-page="contact"
+                    class="nav-link cursor-pointer inline-block px-8 py-4 bg-itg-orange text-white font-bold rounded-full shadow-lg hover:bg-orange-500 transition-all duration-300">S'inscrire
+                    à une formation</a>
+            </div>
+        </section>
+    </template>
+
+    <!-- ── PAGE: PROJETS ── -->
+    <template id="tpl-projets">
+        <section class="relative text-white py-32 lg:py-40 bg-cover bg-center overflow-hidden"
+            style="background-image: url('public/images/background.png');">
+            <div class="absolute inset-0 z-0 bg-itg-blue/85">
+                <div
+                    class="absolute right-0 bottom-0 w-96 h-96 bg-itg-lightblue/20 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2">
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center animate-on-scroll">
+                <nav class="flex justify-center mb-6 text-sm font-medium text-blue-200">
+                    <ol class="inline-flex items-center space-x-1">
+                        <li><a data-page="accueil" class="nav-link cursor-pointer hover:text-white">Accueil</a></li>
+                        <li>
+                            <div class="flex items-center"><svg class="w-4 h-4 mx-1" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg><span class="text-white">Réalisations</span></div>
+                        </li>
+                    </ol>
+                </nav>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Nos réalisations</h1>
+                <p class="text-lg text-blue-100 max-w-3xl mx-auto">Découvrez comment nous avons accompagné nos clients
+                    dans leurs projets de transformation numérique, tous secteurs confondus.</p>
+            </div>
+        </section>
+
+        <section class="py-16 bg-itg-lightbg min-h-screen">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Filtres -->
+                <div class="flex flex-wrap justify-center gap-4 mb-16 animate-on-scroll">
+                    <button
+                        class="filter-btn active-filter px-6 py-2 rounded-full font-semibold border-2 border-itg-blue bg-itg-blue text-white transition-all"
+                        data-filter="all">Tous les projets</button>
+
+                    <!-- Grille projets -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10" id="projects-grid">
+                        <div
+                            class="project-card dev bg-white rounded-3xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col md:flex-row animate-on-scroll">
+                            <div class="w-full md:w-2/5 h-56 md:h-auto relative flex-shrink-0"><img
+                                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
+                                    alt="E-commerce" class="w-full h-full object-cover">
+                                <div
+                                    class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded text-xs font-bold text-itg-lightblue uppercase">
+                                    Développement</div>
+                            </div>
+                            <div class="p-7 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-900 mb-4">Plateforme E-commerce B2B<br><span
+                                            class="text-gray-400 font-normal text-base">IndustrieX</span></h3>
+                                    <div class="space-y-3 text-sm">
+                                        <div><span class="font-bold text-itg-blue text-xs uppercase">Contexte —
+                                            </span><span class="text-gray-600">Gestion des commandes par e-mail et
+                                                Excel, erreurs fréquentes et retards d'expédition.</span></div>
+                                        <div><span class="font-bold text-itg-orange text-xs uppercase">Solution —
+                                            </span><span class="text-gray-600">Portail e-commerce B2B intégré à l'ERP,
+                                                avec tarification dynamique et suivi en temps réel.</span></div>
+                                        <div><span class="font-bold text-green-600 text-xs uppercase">Résultat —
+                                            </span><span class="text-gray-600">−80% d'erreurs de commande · +35% de
+                                                ventes B2B.</span></div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 pt-4 border-t border-gray-100 flex flex-wrap gap-2"><span
+                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">React</span><span
+                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">Node.js</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="project-card secu bg-white rounded-3xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col md:flex-row animate-on-scroll">
+                            <div class="w-full md:w-2/5 h-56 md:h-auto relative flex-shrink-0"><img
+                                    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80"
+                                    alt="MAN" class="w-full h-full object-cover">
+                                <div
+                                    class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded text-xs font-bold text-green-600 uppercase">
+                                    Réseau & Sécu</div>
+                            </div>
+                            <div class="p-7 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-900 mb-4">Refonte Infrastructure
+                                        LAN/MAN<br><span class="text-gray-400 font-normal text-base">Banque
+                                            Nationale</span></h3>
+                                    <div class="space-y-3 text-sm">
+                                        <div><span class="font-bold text-itg-blue text-xs uppercase">Contexte —
+                                            </span><span class="text-gray-600">Réseau multi-sites vieillissant, lent et
+                                                vulnérable aux attaques.</span></div>
+                                        <div><span class="font-bold text-itg-orange text-xs uppercase">Solution —
+                                            </span><span class="text-gray-600">Réseau fibre inter-sites ultra-sécurisé
+                                                avec redondance totale et supervision 24/7.</span></div>
+                                        <div><span class="font-bold text-green-600 text-xs uppercase">Résultat —
+                                            </span><span class="text-gray-600">Disponibilité 99,99% · 0 intrusion
+                                                réussie.</span></div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 pt-4 border-t border-gray-100 flex flex-wrap gap-2"><span
+                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">Cisco</span><span
+                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">Fortinet</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="project-card ia dev bg-white rounded-3xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col md:flex-row animate-on-scroll">
+                            <div class="w-full md:w-2/5 h-56 md:h-auto relative flex-shrink-0"><img
+                                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
+                                    alt="IA" class="w-full h-full object-cover">
+                                <div
+                                    class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded text-xs font-bold text-itg-orange uppercase">
+                                    IA & Automat.</div>
+                            </div>
+                            <div class="p-7 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-900 mb-4">Automatisation des stocks<br><span
+                                            class="text-gray-400 font-normal text-base">AgriTech CI</span></h3>
+                                    <div class="space-y-3 text-sm">
+                                        <div><span class="font-bold text-itg-blue text-xs uppercase">Contexte —
+                                            </span><span class="text-gray-600">Gestion des stocks périssables manuelle,
+                                                lourdes pertes par manque de visibilité.</span></div>
+                                        <div><span class="font-bold text-itg-orange text-xs uppercase">Solution —
+                                            </span><span class="text-gray-600">Système IoT couplé à une IA prédictive
+                                                alertant les gestionnaires automatiquement.</span></div>
+                                        <div><span class="font-bold text-green-600 text-xs uppercase">Résultat —
+                                            </span><span class="text-gray-600">−40% de pertes de stocks dès le 1er
+                                                trimestre.</span></div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 pt-4 border-t border-gray-100 flex flex-wrap gap-2"><span
+                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">Python
+                                        ML</span><span
+                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">IoT</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="project-card form bg-white rounded-3xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col md:flex-row animate-on-scroll">
+                            <div class="w-full md:w-2/5 h-56 md:h-auto relative flex-shrink-0"><img
+                                    src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"
+                                    alt="Formation" class="w-full h-full object-cover">
+                                <div
+                                    class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded text-xs font-bold text-purple-600 uppercase">
+                                    Formation</div>
+                            </div>
+                            <div class="p-7 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-900 mb-4">Upskilling Cybersécurité<br><span
+                                            class="text-gray-400 font-normal text-base">Ministère Public</span></h3>
+                                    <div class="space-y-3 text-sm">
+                                        <div><span class="font-bold text-itg-blue text-xs uppercase">Contexte —
+                                            </span><span class="text-gray-600">Agents mal formés face à l'augmentation
+                                                critique des tentatives de phishing.</span></div>
+                                        <div><span class="font-bold text-itg-orange text-xs uppercase">Solution —
+                                            </span><span class="text-gray-600">Programme intensif 3 mois : théorie +
+                                                simulations de crises pour 150 agents.</span></div>
+                                        <div><span class="font-bold text-green-600 text-xs uppercase">Résultat —
+                                            </span><span class="text-gray-600">95% certifiés · −90% de clics sur emails
+                                                malveillants simulés.</span></div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 pt-4 border-t border-gray-100 flex flex-wrap gap-2"><span
+                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">Ateliers</span><span
+                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">Simulations</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <section class="py-20 bg-itg-blue text-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-itg-blue via-[#1853A8] to-itg-darkblue"></div>
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-white mb-6">Votre projet pourrait être le prochain</h2>
+                <p class="text-xl text-blue-100 mb-10">Chaque réalisation commence par une conversation. Parlons de vos
+                    objectifs.</p>
+                <a data-page="contact"
+                    class="nav-link cursor-pointer inline-block px-8 py-4 bg-itg-orange text-white font-bold rounded-full shadow-lg hover:bg-orange-500 hover:-translate-y-1 transition-all duration-300">Démarrer
+                    mon projet</a>
+            </div>
+        </section>
+    </template>
+
+    <!-- ── PAGE: À PROPOS ── -->
+    <template id="tpl-apropos">
+        <section class="relative text-white py-32 lg:py-40 bg-cover bg-center overflow-hidden"
+            style="background-image: url('public/images/background.png');">
+            <div class="absolute inset-0 z-0 bg-itg-blue/85">
+                <div
+                    class="absolute left-0 top-0 w-80 h-80 bg-itg-lightblue/20 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2">
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center animate-on-scroll">
+                <nav class="flex justify-center mb-6 text-sm text-blue-200">
+                    <ol class="inline-flex items-center space-x-1">
+                        <li><a data-page="accueil" class="nav-link cursor-pointer hover:text-white">Accueil</a></li>
+                        <li>
+                            <div class="flex items-center"><svg class="w-4 h-4 mx-1" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg><span class="text-white">À Propos</span></div>
+                        </li>
+                    </ol>
+                </nav>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Qui sommes-nous ?</h1>
+                <p class="text-lg text-blue-100 max-w-4xl mx-auto">
+                    <span class="text-[#29ABE2] font-bold">I</span>
+                    <span class="text-orange-300 font-bold">T</span>
+                    <span class="text-[#29ABE2] font-bold">G</span> Ltd
+                    (<span class="text-[#29ABE2] font-bold">I</span> nnovation <span
+                        class="text-orange-300 font-bold">T</span>echnology <span
+                        class="text-[#29ABE2] font-bold">G</span>roup Limited) est une entreprise dédiée à l'innovation
+                    technologique et à la digitalisation, à l'automatisation et numerisation des services des
+                    entreprises,
+                    à la mise en place des reseaux informatique et sécurité; et au formation des talents.
+                </p>
+            </div>
+        </section>
+
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:flex gap-16 items-center mb-24 animate-on-scroll">
+                    <div class="lg:w-1/2 mb-10 lg:mb-0">
+                        <h2 class="text-3xl md:text-4xl font-bold text-itg-blue mb-6">Notre historique</h2>
+                        <p class="text-lg text-gray-600 mb-4">
+                            <span class="text-[#003882] font-bold">I</span>
+                            <span class="text-orange-300 font-bold">T</span>
+                            <span class="text-[#29ABE2] font-bold">G</span>
+                            Ltd est né d'une conviction simple : <strong>la technologie doit être un levier de
+                                croissance accessible à toutes les entreprises</strong>, quelle que soit leur taille.
+                        </p>
+                        <p class="text-lg text-gray-600">Depuis notre création, nous accompagnons nos clients dans leurs
+                            projets de développement, d'automatisation, de sécurisation et de formation, avec une
+                            exigence constante de qualité et d'innovation.</p>
+                    </div>
+                    <div class="lg:w-1/2 relative">
+                        <div class="absolute inset-0 bg-itg-palebg transform rotate-3 rounded-3xl"></div><img
+                            src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80"
+                            alt="Notre équipe"
+                            class="relative z-10 rounded-3xl shadow-lg w-full h-[350px] object-cover">
+                    </div>
+                </div>
+                <div class="lg:flex flex-row-reverse gap-16 items-center animate-on-scroll">
+                    <div class="lg:w-1/2 mb-10 lg:mb-0">
+                        <div
+                            class="inline-flex items-center px-4 py-2 rounded-full bg-orange-100 text-itg-orange font-bold text-sm mb-6">
+                            <span class="w-2 h-2 rounded-full bg-itg-orange mr-2"></span>Notre Vision</div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-itg-blue mb-6">Notre mission</h2>
+                        <p class="text-lg text-gray-600">Accompagner les entreprises et les talents dans leur
+                            transformation digitale, en proposant des solutions technologiques innovantes, fiables et
+                            adaptées à leurs besoins réels — du conseil stratégique à la mise en œuvre technique.</p>
+                    </div>
+                    <div class="lg:w-1/2 relative">
+                        <div class="absolute inset-0 bg-itg-blue opacity-10 transform -rotate-3 rounded-3xl"></div><img
+                            src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
+                            alt="Bureau ITG" class="relative z-10 rounded-3xl shadow-lg w-full h-[350px] object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Valeurs -->
+        <section class="py-24 bg-itg-palebg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-itg-blue mb-4">Nos valeurs fondamentales</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div
+                        class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover-lift animate-on-scroll">
+                        <div class="w-16 h-16 mx-auto bg-blue-50 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-itg-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg></div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Innovation</h3>
+                        <p class="text-gray-600 text-sm">Nous explorons en permanence les nouvelles technologies pour
+                            offrir à nos clients des solutions à la pointe.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover-lift animate-on-scroll"
+                        style="animation-delay:0.1s">
+                        <div class="w-16 h-16 mx-auto bg-green-50 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg></div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Fiabilité</h3>
+                        <p class="text-gray-600 text-sm">Nous livrons des solutions robustes, testées et pensées pour
+                            durer dans le temps.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover-lift animate-on-scroll"
+                        style="animation-delay:0.2s">
+                        <div class="w-16 h-16 mx-auto bg-orange-50 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-itg-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z">
+                                </path>
+                            </svg></div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Accompagnement</h3>
+                        <p class="text-gray-600 text-sm">Nous restons aux côtés de nos clients bien après la livraison,
+                            pour un support constant.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover-lift animate-on-scroll"
+                        style="animation-delay:0.3s">
+                        <div class="w-16 h-16 mx-auto bg-purple-50 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                </path>
+                            </svg></div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Transmission</h3>
+                        <p class="text-gray-600 text-sm">Nous croyons en la formation comme moteur de l'autonomie
+                            numérique de nos clients.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Équipe -->
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-itg-blue mb-4">Notre équipe</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        <span class="text-[#003882] font-bold">I</span>
+                        <span class="text-orange-300 font-bold">T</span>
+                        <span class="text-[#29ABE2] font-bold">G</span> Ltd rassemble une équipe pluridisciplinaire
+                        d'experts passionnés : développeurs, ingénieurs IA, spécialistes réseau et cyber sécurité,
+                        formateurs et techniciens.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-itg-lightbg rounded-2xl overflow-hidden shadow-sm group animate-on-scroll">
+                        <div class="h-64 overflow-hidden"><img
+                                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80"
+                                alt="DG"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold text-gray-900">Jean-Marc T.</h3>
+                            <p class="text-itg-orange text-sm font-medium">Directeur Général</p>
+                        </div>
+                    </div>
+                    <div class="bg-itg-lightbg rounded-2xl overflow-hidden shadow-sm group animate-on-scroll"
+                        style="animation-delay:0.1s">
+                        <div class="h-64 overflow-hidden"><img
+                                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+                                alt="CTO"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold text-gray-900">Sarah B.</h3>
+                            <p class="text-itg-orange text-sm font-medium">Directrice Technique (CTO)</p>
+                        </div>
+                    </div>
+                    <div class="bg-itg-lightbg rounded-2xl overflow-hidden shadow-sm group animate-on-scroll"
+                        style="animation-delay:0.2s">
+                        <div class="h-64 overflow-hidden"><img
+                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80"
+                                alt="IA"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold text-gray-900">David K.</h3>
+                            <p class="text-itg-orange text-sm font-medium">Lead Ingénieur IA</p>
+                        </div>
+                    </div>
+                    <div class="bg-itg-lightbg rounded-2xl overflow-hidden shadow-sm group animate-on-scroll"
+                        style="animation-delay:0.3s">
+                        <div class="h-64 overflow-hidden"><img
+                                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80"
+                                alt="Form."
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold text-gray-900">Fatima S.</h3>
+                            <p class="text-itg-orange text-sm font-medium">Responsable Formations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="bg-gradient-primary py-16 text-white shadow-2xl">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/20">
+                    <div class="animate-on-scroll">
+                        <div class="text-4xl md:text-5xl font-bold mb-2">150+</div>
+                        <div class="text-blue-100 text-sm uppercase tracking-wide">Projets réalisés</div>
+                    </div>
+                    <div class="animate-on-scroll" style="animation-delay:0.1s">
+                        <div class="text-4xl md:text-5xl font-bold mb-2">98%</div>
+                        <div class="text-blue-100 text-sm uppercase tracking-wide">Clients satisfaits</div>
+                    </div>
+                    <div class="animate-on-scroll" style="animation-delay:0.2s">
+                        <div class="text-4xl md:text-5xl font-bold mb-2">50+</div>
+                        <div class="text-blue-100 text-sm uppercase tracking-wide">Experts</div>
+                    </div>
+                    <div class="animate-on-scroll" style="animation-delay:0.3s">
+                        <div class="text-4xl md:text-5xl font-bold mb-2">10+</div>
+                        <div class="text-blue-100 text-sm uppercase tracking-wide">Années d'expérience</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- ── PAGE: CONTACT ── -->
+    <template id="tpl-contact">
+        <section class="relative text-white py-32 lg:py-40 bg-cover bg-center overflow-hidden"
+            style="background-image: url('public/images/background.png');">
+            <div class="absolute inset-0 z-0 bg-itg-blue/85">
+                <div
+                    class="absolute left-1/4 top-0 w-96 h-96 bg-itg-lightblue/20 rounded-full blur-3xl transform -translate-y-1/2">
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center animate-on-scroll">
+                <nav class="flex justify-center mb-6 text-sm text-blue-200">
+                    <ol class="inline-flex items-center space-x-1">
+                        <li><a data-page="accueil" class="nav-link cursor-pointer hover:text-white">Accueil</a></li>
+                        <li>
+                            <div class="flex items-center"><svg class="w-4 h-4 mx-1" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg><span class="text-white">Contact</span></div>
+                        </li>
+                    </ol>
+                </nav>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Contactez-nous</h1>
+                <p class="text-lg text-blue-100">Une question, un projet ? Notre équipe vous répond sous 24h.</p>
+            </div>
+        </section>
+
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:flex gap-16">
+                    <!-- Formulaire -->
+                    <div class="lg:w-3/5 mb-12 lg:mb-0 animate-on-scroll">
+                        <h2 class="text-2xl md:text-3xl font-bold text-itg-blue mb-2">Envoyez-nous un message</h2>
+                        <p class="text-gray-500 mb-8">Nous vous répondrons sous 24 heures ouvrées.</p>
+                        <form id="contact-form-spa" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div><label class="block text-sm font-semibold text-gray-700 mb-2">Nom complet <span
+                                            class="text-itg-orange">*</span></label><input type="text" required
+                                        placeholder="Jean Dupont"
+                                        class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 transition-all">
+                                </div>
+                                <div><label class="block text-sm font-semibold text-gray-700 mb-2">Entreprise <span
+                                            class="text-gray-400 font-normal">(opt.)</span></label><input type="text"
+                                        placeholder="Ma Société SARL"
+                                        class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 transition-all">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div><label class="block text-sm font-semibold text-gray-700 mb-2">E-mail <span
+                                            class="text-itg-orange">*</span></label><input type="email" required
+                                        placeholder="jean@exemple.com"
+                                        class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 transition-all">
+                                </div>
+                                <div><label
+                                        class="block text-sm font-semibold text-gray-700 mb-2">Téléphone</label><input
+                                        type="tel" placeholder="+225 00 00 00 00 00"
+                                        class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 transition-all">
+                                </div>
+                            </div>
+                            <div><label class="block text-sm font-semibold text-gray-700 mb-2">Service concerné <span
+                                        class="text-itg-orange">*</span></label><select required
+                                    class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 text-gray-900 cursor-pointer transition-all">
+                                    <option value="" disabled selected>Sélectionnez un service...</option>
+                                    <option>Développement logiciel</option>
+                                    <option>Automatisation & IA</option>
+                                    <option>Sécurité & Réseau informatique</option>
+                                    <option>Formation</option>
+                                    <option>Matériel informatique</option>
+                                    <option>Autre</option>
+                                </select></div>
+                            <div><label class="block text-sm font-semibold text-gray-700 mb-2">Message <span
+                                        class="text-itg-orange">*</span></label><textarea required rows="6"
+                                    placeholder="Décrivez votre projet ou posez vos questions..."
+                                    class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 resize-none transition-all"></textarea>
+                            </div>
+                            <div>
+                                <button id="spa-submit-btn" type="submit"
+                                    class="px-10 py-4 bg-itg-orange text-white font-bold rounded-full shadow-lg hover:bg-orange-600 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                    </svg>
+                                    Envoyer le message
+                                </button>
+                            </div>
+                            <div id="spa-success"
+                                class="hidden p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 font-medium">
+                                ✅ Votre message a été envoyé avec succès ! Nous vous répondrons sous 24h.</div>
+                        </form>
+                    </div>
+                    <!-- Coordonnées -->
+                    <div class="lg:w-2/5 animate-on-scroll">
+                        <div class="bg-itg-palebg rounded-3xl p-8 md:p-10 h-full">
+                            <h2 class="text-2xl font-bold text-itg-blue mb-8">Nos coordonnées</h2>
+                            <div class="space-y-7">
+                                <div class="flex items-start gap-5">
+                                    <div
+                                        class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm flex-shrink-0">
+                                        <svg class="w-6 h-6 text-itg-orange" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                            </path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        </svg></div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 mb-1">Adresse</h4>
+                                        <p class="text-gray-600 text-sm">Bujumbura, Burundi<br>Centre-ville, Avenue
+                                            Patrice Lumumba</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-5">
+                                    <div
+                                        class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm flex-shrink-0">
+                                        <svg class="w-6 h-6 text-itg-orange" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                            </path>
+                                        </svg></div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 mb-1">Téléphone</h4><a
+                                            href="tel:+22500000000"
+                                            class="text-itg-blue hover:text-itg-orange text-sm font-medium">+225 00 00
+                                            00 00 00</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-5">
+                                    <div
+                                        class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm flex-shrink-0">
+                                        <svg class="w-6 h-6 text-itg-orange" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                            </path>
+                                        </svg></div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 mb-1">E-mail</h4><a
+                                            href="mailto:contact@itg-limited.com"
+                                            class="text-itg-blue hover:text-itg-orange text-sm font-medium">contact@itg-limited.com</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-5">
+                                    <div
+                                        class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm flex-shrink-0">
+                                        <svg class="w-6 h-6 text-itg-orange" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg></div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 mb-1">Horaires</h4>
+                                        <p class="text-gray-600 text-sm">Lun–Ven : 08h00 — 18h00<br>Sam : 09h00 — 13h00
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-10 pt-8 border-t border-blue-100">
+                                <h4 class="font-bold text-gray-900 mb-4">Suivez-nous</h4>
+                                <div class="flex gap-3">
+                                    <a href="#"
+                                        class="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm text-gray-500 hover:text-itg-blue hover:shadow-md transition-all"><svg
+                                            class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                        </svg></a>
+                                    <a href="#"
+                                        class="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm text-gray-500 hover:text-blue-600 hover:shadow-md transition-all"><svg
+                                            class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                        </svg></a>
+                                    <a href="#"
+                                        class="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm text-gray-500 hover:text-pink-600 hover:shadow-md transition-all"><svg
+                                            class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                        </svg></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Carte -->
+        <section class="bg-itg-palebg py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-on-scroll">
+                <h2 class="text-2xl font-bold text-itg-blue mb-8 text-center">Notre localisation</h2>
+                <div class="rounded-3xl overflow-hidden shadow-lg border border-gray-100">
+                    <iframe class="w-full" height="400" style="border:0;filter:grayscale(20%)" loading="lazy"
+                        allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=29.3444%2C-3.4028%2C29.3844%2C-3.3628&layer=mapnik&marker=-3.3828%2C29.3644"
+                        title="Carte ITG - Bujumbura, Burundi"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="py-24 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-itg-blue mb-4">Questions fréquentes</h2>
+                </div>
+                <div class="space-y-4 animate-on-scroll" id="faq-container">
+                    <div
+                        class="faq-item bg-itg-palebg rounded-2xl overflow-hidden border border-transparent hover:border-blue-100 transition-all">
+                        <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+                            <span class="text-lg font-semibold text-gray-900">1. Combien de temps faut-il pour recevoir
+                                un devis ?</span>
+                            <svg class="faq-icon flex-shrink-0 w-6 h-6 text-itg-orange ml-4" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4v16m8-8H4"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-answer px-6 pb-0 text-gray-600 text-sm leading-relaxed">
+                            Nous répondons généralement sous <strong>24 à 48 heures ouvrées</strong>. Pour les projets
+                            complexes, nous pouvons planifier un appel de découverte avant de vous soumettre une
+                            proposition détaillée.
+                        </div>
+                    </div>
+
+                    <div
+                        class="faq-item bg-itg-palebg rounded-2xl overflow-hidden border border-transparent hover:border-blue-100 transition-all">
+                        <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+                            <span class="text-lg font-semibold text-gray-900">2. Proposez-vous des formations sur mesure
+                                en entreprise ?</span>
+                            <svg class="faq-icon flex-shrink-0 w-6 h-6 text-itg-orange ml-4" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4v16m8-8H4"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-answer px-6 pb-0 text-gray-600 text-sm leading-relaxed">
+                            Absolument. Nous adaptons nos programmes aux besoins spécifiques de votre équipe, à votre
+                            secteur d'activité et au niveau de vos collaborateurs. Contactez-nous pour en discuter.
+                        </div>
+                    </div>
+
+                    <div
+                        class="faq-item bg-itg-palebg rounded-2xl overflow-hidden border border-transparent hover:border-blue-100 transition-all">
+                        <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+                            <span class="text-lg font-semibold text-gray-900">3. Intervenez-vous en dehors de votre zone
+                                géographique ?</span>
+                            <svg class="faq-icon flex-shrink-0 w-6 h-6 text-itg-orange ml-4" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4v16m8-8H4"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-answer px-6 pb-0 text-gray-600 text-sm leading-relaxed">
+                            Nous intervenons sur l'ensemble du territoire burundais et dans toute la sous-région. Pour
+                            le développement et la formation, nous proposons également des interventions à distance.
+                        </div>
+                    </div>
+
+                    <div
+                        class="faq-item bg-itg-palebg rounded-2xl overflow-hidden border border-transparent hover:border-blue-100 transition-all">
+                        <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+                            <span class="text-lg font-semibold text-gray-900">4. Proposez-vous un service de support
+                                après livraison ?</span>
+                            <svg class="faq-icon flex-shrink-0 w-6 h-6 text-itg-orange ml-4" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4v16m8-8H4"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-answer px-6 pb-0 text-gray-600 text-sm leading-relaxed">
+                            Chez ITG Ltd,L'accompagnement post-livraison est au cœur de notre philosophie. Nous
+                            proposons des contrats de maintenance, de support technique et d'évolution pour toutes nos
+                            solutions.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- ══════════════ SPA ROUTER & PRELOADER JS ══════════════ -->
+    <script>
+            (function () {
+                const pageContent = document.getElementById('page-content');
+                const mobileBtn = document.getElementById('mobile-menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
+                const preloader = document.getElementById('preloader');
+                const preloaderBar = document.getElementById('preloader-bar');
+
+                // ── Mobile toggle
+                mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+                // ── Preloader Helper (Min 3 Seconds)
+                function runPreloader(callback) {
+                    if (!preloader) {
+                        if (callback) callback();
+                        return;
+                    }
+                    preloader.style.display = 'flex';
+                    preloader.classList.remove('fade-out');
+                    if (preloaderBar) {
+                        preloaderBar.style.animation = 'none';
+                        preloaderBar.offsetHeight; // trigger reflow
+                        preloaderBar.style.animation = null;
+                    }
+
+                    const startTime = Date.now();
+                    const minDuration = 3000; // 3 seconds default
+
+                    setTimeout(() => {
+                        if (callback) callback();
+                        const elapsedTime = Date.now() - startTime;
+                        const remaining = Math.max(0, minDuration - elapsedTime);
+                        setTimeout(() => {
+                            preloader.classList.add('fade-out');
+                            setTimeout(() => { preloader.style.display = 'none'; }, 500);
+                        }, remaining);
+                    }, 100);
+                }
+
+                // ── Initial Page Load Preloader
+                const initStartTime = Date.now();
+                function hideInitialPreloader() {
+                    const elapsedTime = Date.now() - initStartTime;
+                    const remaining = Math.max(0, 3000 - elapsedTime);
+                    setTimeout(() => {
+                        if (preloader) {
+                            preloader.classList.add('fade-out');
+                            setTimeout(() => { preloader.style.display = 'none'; }, 500);
+                        }
+                    }, remaining);
+                }
+
+                if (document.readyState === 'complete') {
+                    hideInitialPreloader();
+                } else {
+                    window.addEventListener('load', hideInitialPreloader);
+                }
+
+                // ── Navigate to a page
+                function navigateTo(page) {
+                    const tpl = document.getElementById('tpl-' + page);
+                    if (!tpl) return;
+
+                    runPreloader(() => {
+                        pageContent.innerHTML = tpl.innerHTML;
+                        pageContent.classList.remove('fade-out');
+                        pageContent.classList.add('fade-in');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        mobileMenu.classList.add('hidden');
+                        updateNav(page);
+                        attachNavLinks();
+                        initScrollAnimations();
+                        if (page === 'projets') initProjectFilter();
+                        if (page === 'contact') initContactForm();
+                        if (page === 'formations') initFormationsCards();
+                        history.pushState({ page }, '', '#' + page);
+                        document.title = pageTitles[page] || 'ITG Limited';
+                    });
+                }
+
+                // ── Page titles
+                const pageTitles = {
+                    accueil: 'ITG Limited — Innover pour transformer votre avenir',
+                    services: 'Services informatiques | ITG Limited',
+                    formations: 'Formations informatiques | ITG Limited',
+                    projets: 'Nos réalisations | ITG Limited',
+                    apropos: 'À Propos | ITG Limited',
+                    contact: 'Contactez-nous | ITG Limited',
+                };
+
+                // ── Update active nav link
+                function updateNav(page) {
+                    document.querySelectorAll('#desktop-nav .nav-link').forEach(a => {
+                        if (a.dataset.page === page) {
+                            a.classList.add('active');
+                        } else {
+                            a.classList.remove('active');
+                        }
+                    });
+                }
+
+                // ── Attach click handlers to all nav-link elements
+                function attachNavLinks() {
+                    document.querySelectorAll('.nav-link').forEach(a => {
+                        a.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const p = a.dataset.page;
+                            if (p) navigateTo(p);
+                        });
+                    });
+                }
+
+                // ── Scroll animations with IntersectionObserver
+                function initScrollAnimations() {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('visible');
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.08 });
+
+                    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                        el.classList.remove('visible');
+                        observer.observe(el);
+                    });
+                }
+
+                // ── Project filter
+                function initProjectFilter() {
+                    document.querySelectorAll('.filter-btn').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            document.querySelectorAll('.filter-btn').forEach(b => {
+                                b.classList.remove('bg-itg-blue', 'text-white', 'border-itg-blue', 'active-filter');
+                                b.classList.add('bg-white', 'text-gray-600', 'border-gray-200');
+                            });
+                            btn.classList.add('bg-itg-blue', 'text-white', 'border-itg-blue', 'active-filter');
+                            btn.classList.remove('bg-white', 'text-gray-600', 'border-gray-200');
+
+                            const filter = btn.dataset.filter;
+                            document.querySelectorAll('.project-card').forEach(card => {
+                                card.style.display = (filter === 'all' || card.classList.contains(filter)) ? 'flex' : 'none';
+                            });
+                        });
+                    });
+                }
+
+                // ── Contact form
+                function initContactForm() {
+                    const form = document.getElementById('contact-form-spa');
+                    const btn = document.getElementById('spa-submit-btn');
+                    const msg = document.getElementById('spa-success');
+                    if (!form) return;
+                    form.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        btn.disabled = true;
+                        btn.textContent = 'Envoi en cours...';
+                        setTimeout(() => {
+                            form.reset();
+                            msg.classList.remove('hidden');
+                            btn.disabled = false;
+                            btn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg> Envoyer le message';
+                            msg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }, 1500);
+                    });
+
+                    // FAQ accordion
+                    document.querySelectorAll('.faq-trigger').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            const item = btn.closest('.faq-item');
+                            const answer = item.querySelector('.faq-answer');
+                            const isOpen = item.classList.contains('open');
+                            document.querySelectorAll('.faq-item').forEach(el => {
+                                el.classList.remove('open');
+                                el.querySelector('.faq-answer').style.maxHeight = '0';
+                                el.querySelector('.faq-answer').style.paddingBottom = '0';
+                            });
+                            if (!isOpen) {
+                                item.classList.add('open');
+                                answer.style.maxHeight = answer.scrollHeight + 'px';
+                                answer.style.paddingBottom = '1.5rem';
+                            }
+                        });
+                    });
+                }
+
+                // ── Fix formation cards (template literals with js)
+                function initFormationsCards() { /* already rendered via template */ }
+
+                // ── Initial load
+                attachNavLinks();
+
+                // Handle hash on first load
+                const hash = window.location.hash.replace('#', '') || 'accueil';
+                navigateTo(hash);
+
+                // Handle browser back/forward
+                window.addEventListener('popstate', (e) => {
+                    if (e.state && e.state.page) navigateTo(e.state.page);
+                });
+            })();
+    </script>
+</body>
+
+</html>

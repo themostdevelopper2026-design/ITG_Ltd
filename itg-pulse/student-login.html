@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ITG Limited — Espace Apprenant</title>
+  <meta name="description" content="Espace Apprenant ITG Limited — Inscription et connexion aux formations informatiques">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'itg-blue': '#003882',
+            'itg-orange': '#F28C28',
+            'itg-lightblue': '#29ABE2',
+            'itg-lightbg': '#F5F7FA',
+            'itg-palebg': '#EAF2FB',
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+    }
+    .active-tab {
+      color: #003882;
+      border-bottom: 3px solid #F28C28;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body class="min-h-screen font-sans bg-itg-lightbg text-gray-800 relative overflow-x-hidden flex flex-col justify-between">
+
+  <!-- Background decorative elements -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-itg-blue/30 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 -right-40 w-96 h-96 bg-itg-lightblue/20 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-itg-orange/20 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- Header / Navigation back -->
+  <header class="relative z-10 p-6 max-w-7xl mx-auto w-full flex justify-between items-center">
+    <a href="../index.html" class="flex items-center gap-3 text-white font-semibold hover:opacity-80 transition-opacity">
+      <img src="../public/images/ITG2.png" alt="ITG Logo" class="h-10 w-auto bg-white p-1 rounded-lg">
+      <span class="text-sm tracking-wide ">    
+                    <span class="text-[#003882] font-bold">I</span>
+                    <span class="text-orange-300 font-bold">T</span>
+                    <span class="text-[#29ABE2] font-bold">G</span>
+                    <span class="text-slate-900">Limited</span>
+    </a>
+    <a href="../index.html" class="text-blue-600 text-sm flex items-center gap-1">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+      Retour au site
+    </a>
+  </header>
+
+  <!-- Main Content Card -->
+  <main class="relative z-10 max-w-4xl mx-auto px-4 py-8 w-full flex-grow flex items-center justify-center">
+    <div class="grid grid-cols-1 md:grid-cols-12 glass-card rounded-3xl shadow-2xl overflow-hidden border border-white/20 w-full">
+      
+      <!-- Left Banner Info -->
+      <div class="md:col-span-5 bg-gradient-to-br from-itg-blue via-blue-900 to-itg-blue p-8 text-white flex flex-col justify-between relative overflow-hidden">
+        <div class="relative z-10">
+          <span class="inline-block px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-semibold uppercase tracking-wider text-blue-200 mb-4">
+            Espace Apprenant
+          </span>
+          <h2 class="text-2xl md:text-3xl font-extrabold mb-4 leading-tight">
+            Développez vos compétences IT avec <span class="text-itg-orange">ITG Academy</span>
+          </h2>
+          <p class="text-blue-100 text-xs md:text-sm leading-relaxed mb-6">
+            Inscrivez-vous à nos sessions de formation pratique ou connectez-vous pour accéder à votre tableau de bord apprenant.
+          </p>
+        </div>
+
+        <div class="relative z-10 space-y-3 border-t border-white/10 pt-6 text-xs text-blue-100">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-itg-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span>Certifications reconnues</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-itg-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span>Formateurs experts du secteur</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-itg-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span>Accès aux cours & projets pratiques</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Form Section -->
+      <div class="md:col-span-7 p-6 sm:p-8 bg-white flex flex-col justify-center">
+        <!-- Tabs -->
+        <div class="flex border-b border-gray-200 mb-6">
+          <button id="tab-register-btn" onclick="switchTab('register')" class="flex-1 py-3 text-center text-sm font-semibold transition-colors active-tab">
+            S'inscrire à une formation
+          </button>
+          <button id="tab-login-btn" onclick="switchTab('login')" class="flex-1 py-3 text-center text-sm font-semibold text-gray-500 hover:text-itg-blue transition-colors">
+            Se connecter
+          </button>
+        </div>
+
+        <!-- Inscription Form -->
+        <form id="form-register" class="space-y-4" autocomplete="off" onsubmit="handleStudentSubmit(event, 'register')">
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">Nom complet</label>
+            <input type="text" required autocomplete="off" placeholder="Ex: Jean Dupont" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-itg-blue focus:ring-2 focus:ring-itg-blue/10">
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">Email</label>
+              <input type="email" required autocomplete="off" placeholder="apprenant@email.com" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-itg-blue focus:ring-2 focus:ring-itg-blue/10">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">Mot de passe</label>
+              <input type="password" required autocomplete="new-password" placeholder="••••••••" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-itg-blue focus:ring-2 focus:ring-itg-blue/10">
+            </div>
+          
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">Téléphone</label>
+              <input type="tel" required autocomplete="off" placeholder="+257 ..." class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-itg-blue focus:ring-2 focus:ring-itg-blue/10">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">Formation souhaitée</label>
+            <select required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-itg-blue focus:ring-2 focus:ring-itg-blue/10 text-gray-700">
+              <option value="">- Sélectionnez une formation -</option>
+              <option value="dev">Développement Web </option>
+              <option value="dev">site Web & E-Commerce</option>
+              <option value="dev">Développement Mobile</option>
+              <option value="dev">Initiation à l'informatique</option>
+              <option value="dev">Réseaux informatique</option>
+              <option value="cyber">Cybersécurité</option>
+              <option value="ia">IA & Automatisation</option>
+              <option value="sysadmin">Base de donnee et Administration</option>
+            </select>
+          </div>
+          <button type="submit" class="w-full py-3 bg-itg-orange text-white font-bold rounded-xl text-sm hover:bg-orange-600 shadow-md hover:shadow-lg transition-all duration-200">
+            Valider mon inscription
+          </button>
+        </form>
+
+        <!-- Connexion Form (Hidden by default) -->
+        <form id="form-login" class="space-y-4 hidden" autocomplete="off" onsubmit="handleStudentSubmit(event, 'login')">
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">Adresse Email</label>
+            <input type="email" required autocomplete="off" placeholder="apprenant@email.com" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-itg-blue focus:ring-2 focus:ring-itg-blue/10">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">Mot de passe</label>
+            <input type="password" required autocomplete="new-password" placeholder="••••••••" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-itg-blue focus:ring-2 focus:ring-itg-blue/10">
+          </div>
+          <div class="flex items-center justify-between text-xs">
+            <label class="flex items-center gap-2 cursor-pointer text-gray-600">
+              <input type="checkbox" class="rounded text-itg-blue">
+              <span>Se souvenir de moi</span>
+            </label>
+            <a href="#" class="text-itg-blue hover:underline">Mot de passe oublié ?</a>
+          </div>
+          <button type="submit" class="w-full py-3 bg-itg-blue text-white font-bold rounded-xl text-sm hover:bg-blue-800 shadow-md hover:shadow-lg transition-all duration-200">
+            Accéder à mon espace
+          </button>
+        </form>
+
+        <!-- Notification / Confirmation message -->
+        <div id="status-msg" class="hidden mt-4 p-4 rounded-xl bg-green-50 text-green-700 text-xs font-medium border border-green-200"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="relative z-10 p-4 text-center text-xs/50">
+    <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                    &copy; 2026
+                    <span class="text-slate-900">Powered by</span>
+                    <span class="text-[#003882] font-bold">I</span><span class="text-slate-900">nnovation</span>
+                    <span class="text-orange-300 font-bold">T</span><span class="text-slate-900">echnology</span>
+                    <span class="text-[#29ABE2] font-bold">G</span><span class="text-slate-900">roup</span>
+                    <span class="text-slate-900">Ltd</span>.
+                    
+                </p>
+  </footer>
+
+  <script>
+    function switchTab(tab) {
+      const regForm = document.getElementById('form-register');
+      const loginForm = document.getElementById('form-login');
+      const regBtn = document.getElementById('tab-register-btn');
+      const loginBtn = document.getElementById('tab-login-btn');
+      const statusMsg = document.getElementById('status-msg');
+
+      statusMsg.classList.add('hidden');
+
+      if (tab === 'register') {
+        regForm.classList.remove('hidden');
+        loginForm.classList.add('hidden');
+        regBtn.classList.add('active-tab');
+        regBtn.classList.remove('text-gray-500');
+        loginBtn.classList.remove('active-tab');
+        loginBtn.classList.add('text-gray-500');
+      } else {
+        loginForm.classList.remove('hidden');
+        regForm.classList.add('hidden');
+        loginBtn.classList.add('active-tab');
+        loginBtn.classList.remove('text-gray-500');
+        regBtn.classList.remove('active-tab');
+        regBtn.classList.add('text-gray-500');
+      }
+    }
+
+    function handleStudentSubmit(e, action) {
+      e.preventDefault();
+      const statusMsg = document.getElementById('status-msg');
+      statusMsg.classList.remove('hidden');
+      if (action === 'register') {
+        statusMsg.innerHTML = "✅ Inscription enregistrée avec succès ! Redirection vers votre espace apprenant...";
+      } else {
+        statusMsg.innerHTML = "✅ Connexion réussie ! Chargement de votre espace apprenant...";
+      }
+      setTimeout(() => {
+        alert("Espace Apprenant : En cours d'intégration complète.");
+      }, 1200);
+    }
+
+    // Clear all form inputs on page load to prevent unwanted autofill
+    window.addEventListener('DOMContentLoaded', () => {
+      const regForm = document.getElementById('form-register');
+      const loginForm = document.getElementById('form-login');
+      if (regForm) regForm.reset();
+      if (loginForm) loginForm.reset();
+    });
+
+    // Auto switch to login tab if URL hash is #login
+    if (window.location.hash === '#login') {
+      switchTab('login');
+    }
+  </script>
+</body>
+</html>
