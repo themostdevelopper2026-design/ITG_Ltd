@@ -65,7 +65,7 @@
     <!-- ════════════════════════════════════════════════════════════════ -->
     <!-- SIDEBAR NAVIGATION (CONFORME AU CAPTURE MOCKUP #1)               -->
     <!-- ════════════════════════════════════════════════════════════════ -->
-    <aside id="sidebar" class="w-64 bg-[#071838] text-white flex flex-col flex-shrink-0 z-30 transition-all duration-300 relative border-r border-slate-800">
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 bg-[#071838] text-white flex flex-col flex-shrink-0 transition-transform duration-300 -translate-x-full md:translate-x-0 md:static border-r border-slate-800">
       
       <!-- Brand Header with Logo -->
       <div class="p-5 flex items-center justify-between border-b border-slate-800/80">
@@ -137,13 +137,16 @@
       <!-- Sidebar User Profile Footer -->
       <div class="p-3 border-t border-slate-800/80 bg-slate-900/50">
         <div class="flex items-center gap-3 p-2 rounded-xl bg-slate-800/60 border border-slate-700/50">
-          <div class="w-8 h-8 rounded-full bg-itg-blue text-white flex items-center justify-center font-bold text-xs">
+          <div id="user-avatar-sidebar" class="w-8 h-8 rounded-full bg-itg-blue text-white flex items-center justify-center font-bold text-xs shadow-sm">
             JN
           </div>
           <div class="flex-1 min-w-0">
-            <p class="text-xs font-bold text-white truncate">Jean Niyonzima</p>
-            <p class="text-[10px] text-slate-400 truncate">Directeur Général</p>
+            <p id="user-name-sidebar" class="text-xs font-bold text-white truncate">Jean Niyonzima</p>
+            <p id="user-role-sidebar" class="text-[10px] text-slate-400 truncate">Directeur Général</p>
           </div>
+          <button onclick="logoutUser()" title="Se déconnecter" class="text-slate-400 hover:text-rose-400 transition-colors p-1">
+            <i data-lucide="log-out" class="w-4 h-4"></i>
+          </button>
         </div>
       </div>
 
@@ -160,11 +163,16 @@
       <!-- TOP HEADER BAR (EXACT CAPTURE UX) -->
       <header class="h-16 bg-white border-b border-slate-200/80 px-4 md:px-6 flex items-center justify-between z-10 shadow-sm flex-shrink-0">
         
-        <!-- Left: Hamburger toggle -->
+        <!-- Left: Hamburger toggle & Breadcrumb -->
         <div class="flex items-center gap-3">
           <button id="mobile-toggle" class="md:hidden text-slate-600 hover:text-slate-900 p-1.5 rounded-lg hover:bg-slate-100">
             <i data-lucide="menu" class="w-6 h-6"></i>
           </button>
+          <div class="hidden sm:flex items-center gap-2 text-xs font-medium text-slate-500">
+            <span class="text-slate-400">ITG Pulse</span>
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-300"></i>
+            <span id="current-view-title" class="font-bold text-slate-800">Tableau de bord</span>
+          </div>
         </div>
 
         <!-- Right: Actions & User Profile -->
@@ -183,16 +191,33 @@
 
           <div class="h-6 w-px bg-slate-200"></div>
 
-          <!-- User Info (Jean Niyonzima - Directeur Général) -->
-          <div class="flex items-center gap-3 cursor-pointer p-1 rounded-xl hover:bg-slate-50">
-            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-itg-blue to-itg-cyan text-white flex items-center justify-center font-bold text-xs shadow-sm">
-              JN
+          <!-- User Profile Dropdown -->
+          <div class="relative group">
+            <div class="flex items-center gap-3 cursor-pointer p-1 rounded-xl hover:bg-slate-50">
+              <div id="user-avatar-header" class="w-9 h-9 rounded-full bg-gradient-to-tr from-itg-blue to-itg-cyan text-white flex items-center justify-center font-bold text-xs shadow-sm">
+                JN
+              </div>
+              <div class="hidden sm:block text-left">
+                <p id="user-name-header" class="text-xs font-bold text-slate-900 leading-tight">Jean Niyonzima</p>
+                <p id="user-role-header" class="text-[10px] text-slate-500 font-medium">Directeur Général</p>
+              </div>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400"></i>
             </div>
-            <div class="hidden sm:block text-left">
-              <p class="text-xs font-bold text-slate-900 leading-tight">Jean Niyonzima</p>
-              <p class="text-[10px] text-slate-500 font-medium">Directeur Général</p>
+
+            <!-- Dropdown Menu -->
+            <div class="absolute right-0 top-full mt-2 w-48 bg-white rounded-2xl shadow-xl border border-slate-100 py-1.5 hidden group-hover:block z-50 animate-fade-in">
+              <div class="px-4 py-2 border-b border-slate-100">
+                <p id="user-email-dropdown" class="text-xs text-slate-500 truncate">admin@itg.bi</p>
+              </div>
+              <a href="#" onclick="switchTab('parametres'); return false;" class="flex items-center gap-2 px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50">
+                <i data-lucide="user" class="w-4 h-4 text-slate-400"></i>
+                Mon Profil
+              </a>
+              <a href="#" onclick="logoutUser(); return false;" class="flex items-center gap-2 px-4 py-2 text-xs font-semibold text-rose-600 hover:bg-rose-50">
+                <i data-lucide="log-out" class="w-4 h-4 text-rose-500"></i>
+                Se déconnecter
+              </a>
             </div>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400"></i>
           </div>
 
         </div>
@@ -620,41 +645,130 @@
     </div>
   </div>
 
-  <!-- SCRIPT LOGIC CONNECTED TO PHP LARAVEL API -->
+  <!-- SCRIPT LOGIC CONNECTED TO PHP API -->
   <script>
-    const API_BASE = 'http://127.0.0.1:8000/api';
+    // === CONFIGURATION DES ENDPOINTS API (AUTO-DÉTECTION) ===
+    const API_ENDPOINTS = [
+      '../backend/public/api',
+      'http://127.0.0.1/backend/public/api',
+      'http://localhost/backend/public/api',
+      'http://127.0.0.1/ITG_Group/backend/public/api',
+      'http://localhost/ITG_Group/backend/public/api',
+      'http://127.0.0.1:8000/api'
+    ];
+    let ACTIVE_API_BASE = API_ENDPOINTS[0];
     let chartInstance = null;
+
+    // Titres de chaque vue pour le fil d'Ariane (Breadcrumb)
+    const VIEW_TITLES = {
+      'dashboard':  'Tableau de bord',
+      'projets':    'Gestion des Projets',
+      'taches':     'Gestion des Tâches',
+      'crm':        'CRM Commercial',
+      'formations': 'ITG Academy (Formations)',
+      'stocks':     'Gestion des Stocks & Matériels',
+      'rapports':   'Rapports & Analytiques',
+      'parametres': 'Paramètres du Système'
+    };
 
     window.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
       initMobileSidebar();
-      loadDashboardData();
+      initUserProfile();
+      detectActiveApiEndpoint();
+
+      // Détecter l'onglet actif selon l'URL Hash (#projets, #taches, etc.)
+      const hash = window.location.hash.replace('#', '');
+      if (hash && VIEW_TITLES[hash]) {
+        switchTab(hash);
+      } else {
+        loadDashboardData();
+      }
     });
 
+    // Détecter l'endpoint API qui répond
+    async function detectActiveApiEndpoint() {
+      for (const base of API_ENDPOINTS) {
+        try {
+          const res = await fetch(`${base}/pulse/stats`, { method: 'GET', signal: AbortSignal.timeout(1500) });
+          if (res.ok || res.status === 200 || res.status === 401) {
+            ACTIVE_API_BASE = base;
+            console.log('[ITG-Pulse] API active connectée :', ACTIVE_API_BASE);
+            break;
+          }
+        } catch (e) {}
+      }
+    }
+
+    // Charger le profil de l'utilisateur connecté depuis LocalStorage
+    function initUserProfile() {
+      try {
+        const stored = localStorage.getItem('itg_user');
+        if (stored) {
+          const user = JSON.parse(stored);
+          const prenom = user.prenom || 'Jean';
+          const nom = user.nom || 'Niyonzima';
+          const role = user.titre || user.role || 'Utilisateur ITG';
+          const email = user.email || 'user@itg.bi';
+
+          // Calcule des initiales (ex: "Jean Niyonzima" -> "JN")
+          const initials = (prenom[0] + (nom[0] || '')).toUpperCase();
+
+          // Sidebar
+          document.getElementById('user-name-sidebar').textContent = `${prenom} ${nom}`;
+          document.getElementById('user-role-sidebar').textContent = role;
+          document.getElementById('user-avatar-sidebar').textContent = initials;
+
+          // Navbar
+          document.getElementById('user-name-header').textContent = `${prenom} ${nom}`;
+          document.getElementById('user-role-header').textContent = role;
+          document.getElementById('user-avatar-header').textContent = initials;
+          document.getElementById('user-email-dropdown').textContent = email;
+        }
+      } catch (err) {
+        console.warn('Impossible de charger la session utilisateur local.', err);
+      }
+    }
+
+    // Fonction de déconnexion
+    function logoutUser() {
+      localStorage.removeItem('itg_user');
+      window.location.href = 'login.html';
+    }
+
     function switchTab(tabId) {
-      // Hide all view sections
+      if (!VIEW_TITLES[tabId]) tabId = 'dashboard';
+
+      // Masquer toutes les vues
       document.querySelectorAll('.tab-view').forEach(v => v.classList.add('hidden'));
 
-      // Remove active class from all sidebar nav buttons
+      // Retirer l'état actif sur les boutons du menu sidebar
       document.querySelectorAll('#sidebar-nav button').forEach(btn => {
         btn.classList.remove('sidebar-active-pill');
         btn.classList.add('text-slate-300');
       });
 
-      // Show target view section
+      // Afficher la vue ciblée
       const targetView = document.getElementById(`view-${tabId}`);
       if (targetView) {
         targetView.classList.remove('hidden');
       }
 
-      // Highlight active sidebar nav button
+      // Activer le bouton correspondant dans la sidebar
       const targetBtn = document.getElementById(`nav-tab-${tabId}`);
       if (targetBtn) {
         targetBtn.classList.add('sidebar-active-pill');
         targetBtn.classList.remove('text-slate-300');
       }
 
-      // Load API data for the active tab
+      // Mettre à jour le titre dans le fil d'Ariane
+      const titleEl = document.getElementById('current-view-title');
+      if (titleEl) titleEl.textContent = VIEW_TITLES[tabId];
+
+      // Mettre à jour l'URL sans recharger la page
+      window.history.replaceState(null, '', `#${tabId}`);
+
+      // Charger les données de la vue active
       if (tabId === 'dashboard') loadDashboardData();
       if (tabId === 'projets') loadProjetsData();
       if (tabId === 'taches') loadTachesData();
@@ -669,7 +783,7 @@
 
     async function loadDashboardData() {
       try {
-        const res = await fetch(`${API_BASE}/pulse/stats`);
+        const res = await fetch(`${ACTIVE_API_BASE}/pulse/stats`);
         if (res.ok) {
           const stats = await res.json();
           document.getElementById('kpi-ca').innerHTML = `${new Intl.NumberFormat('fr-FR').format(stats.chiffre_affaires)} <span class="text-xs font-bold text-slate-500">FCFA</span>`;
@@ -684,14 +798,14 @@
 
     async function loadProjetsData() {
       try {
-        const res = await fetch(`${API_BASE}/projets`);
+        const res = await fetch(`${ACTIVE_API_BASE}/projets`);
         if (!res.ok) return;
         const projets = await res.json();
         const tbody = document.getElementById('table-projets-body');
         if (!tbody || !projets.length) return;
 
         tbody.innerHTML = projets.map(p => `
-          <tr>
+          <tr class="hover:bg-slate-50/80 transition-colors">
             <td class="p-3.5 font-bold text-slate-900">${p.nom}</td>
             <td class="p-3.5 text-slate-600">${p.client_nom || 'SOGEA-SATOM'}</td>
             <td class="p-3.5 text-slate-600">${p.chef_nom || 'Jean Hakizimana'}</td>
@@ -704,7 +818,7 @@
                 <span class="font-bold text-[11px]">${p.avancement_pct}%</span>
               </div>
             </td>
-            <td class="p-3.5"><span class="bg-blue-100 text-itg-blue px-2 py-0.5 rounded-full text-[10px] font-bold">${p.statut}</span></td>
+            <td class="p-3.5"><span class="bg-blue-100 text-itg-blue px-2.5 py-0.5 rounded-full text-[10px] font-bold">${p.statut}</span></td>
           </tr>
         `).join('');
       } catch (err) {}
@@ -712,7 +826,7 @@
 
     async function loadTachesData() {
       try {
-        const res = await fetch(`${API_BASE}/taches`);
+        const res = await fetch(`${ACTIVE_API_BASE}/taches`);
         if (!res.ok) return;
         const taches = await res.json();
       } catch (err) {}
@@ -720,13 +834,13 @@
 
     async function loadCrmData() {
       try {
-        const res = await fetch(`${API_BASE}/crm`);
+        const res = await fetch(`${ACTIVE_API_BASE}/crm`);
         if (!res.ok) return;
         const data = await res.json();
         const tbody = document.getElementById('crm-table-body');
         if (tbody && data.clients && data.clients.length) {
           tbody.innerHTML = data.clients.map(c => `
-            <tr>
+            <tr class="hover:bg-slate-50/80 transition-colors">
               <td class="p-3 font-bold text-slate-900">${c.nom_entreprise}</td>
               <td class="p-3 text-slate-600">${c.contact_nom || '-'}</td>
               <td class="p-3 text-slate-500">${c.email || '-'}</td>
@@ -739,28 +853,28 @@
 
     async function loadFormationsData() {
       try {
-        const res = await fetch(`${API_BASE}/formations`);
+        const res = await fetch(`${ACTIVE_API_BASE}/formations`);
         if (!res.ok) return;
       } catch (err) {}
     }
 
     async function loadStocksData() {
       try {
-        const res = await fetch(`${API_BASE}/stocks`);
+        const res = await fetch(`${ACTIVE_API_BASE}/stocks`);
         if (!res.ok) return;
       } catch (err) {}
     }
 
     async function loadRapportsData() {
       try {
-        const res = await fetch(`${API_BASE}/rapports`);
+        const res = await fetch(`${ACTIVE_API_BASE}/rapports`);
         if (!res.ok) return;
       } catch (err) {}
     }
 
     async function loadParametresData() {
       try {
-        const res = await fetch(`${API_BASE}/parametres`);
+        const res = await fetch(`${ACTIVE_API_BASE}/parametres`);
         if (!res.ok) return;
       } catch (err) {}
     }
@@ -771,7 +885,6 @@
 
       if (chartInstance) chartInstance.destroy();
 
-      // Exact donut data matching capture #1
       chartInstance = new Chart(ctx, {
         type: 'doughnut',
         data: {
@@ -809,7 +922,7 @@
       const desc = document.getElementById('modal-field-desc').value;
 
       try {
-        const res = await fetch(`${API_BASE}/projets`, {
+        const res = await fetch(`${ACTIVE_API_BASE}/projets`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ nom: title, description: desc, budget: 15000000 })
@@ -837,13 +950,16 @@
       if (overlay) overlay.onclick = closeMobileSidebar;
     }
     function closeMobileSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      const overlay = document.getElementById('sidebar-overlay');
-      if (sidebar && overlay) {
-        sidebar.classList.add('-translate-x-full');
-        overlay.classList.add('hidden');
+      if (window.innerWidth < 768) {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        if (sidebar && overlay) {
+          sidebar.classList.add('-translate-x-full');
+          overlay.classList.add('hidden');
+        }
       }
     }
   </script>
 </body>
 </html>
+

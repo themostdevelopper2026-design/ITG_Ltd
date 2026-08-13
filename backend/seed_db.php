@@ -53,3 +53,5 @@ try {
 } catch (PDOException $e) {
     echo "❌ Erreur PHP PDO : " . $e->getMessage() . "\n";
 }
+
+

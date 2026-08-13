@@ -937,7 +937,7 @@
                     </div>
                     <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
                         <h3 class="text-2xl font-bold text-gray-900 mb-4">Réseaux informatiques</h3>
-                        <p class="text-gray-600 mb-6">Conception, installation et configuration de réseaux LAN et MAN,
+                        <p class="text-gray-600 mb-6">Conception, installation et configuration de réseaux LAN,MAN,Wi-Fi,caméras de surveillance,
                             fiables, sécurisés et adaptés à votre organisation.</p><a data-page="contact"
                             class="nav-link cursor-pointer inline-flex items-center font-bold text-itg-blue hover:text-itg-orange transition-colors">Déployer
                             un réseau <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1371,175 +1371,177 @@
         <section class="py-16 bg-itg-lightbg min-h-screen">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Filtres -->
-                <div class="flex flex-wrap justify-center gap-4 mb-16 animate-on-scroll">
+                <div class="flex flex-wrap justify-center gap-3 mb-12 animate-on-scroll">
                     <button
                         class="filter-btn active-filter px-6 py-2 rounded-full font-semibold border-2 border-itg-blue bg-itg-blue text-white transition-all"
                         data-filter="all">Tous les projets</button>
+                    <button
+                        class="filter-btn px-6 py-2 rounded-full font-semibold border-2 border-gray-200 bg-white text-gray-600 hover:border-itg-blue transition-all"
+                        data-filter="dev">Développement</button>
+                    <button
+                        class="filter-btn px-6 py-2 rounded-full font-semibold border-2 border-gray-200 bg-white text-gray-600 hover:border-itg-blue transition-all"
+                        data-filter="secu">Réseau &amp; Sécurité</button>
+                    <button
+                        class="filter-btn px-6 py-2 rounded-full font-semibold border-2 border-gray-200 bg-white text-gray-600 hover:border-itg-blue transition-all"
+                        data-filter="ia">IA &amp; Automatisation</button>
+                    <button
+                        class="filter-btn px-6 py-2 rounded-full font-semibold border-2 border-gray-200 bg-white text-gray-600 hover:border-itg-blue transition-all"
+                        data-filter="form">Formation</button>
+                </div>
 
-                    <!-- Grille projets -->
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10" id="projects-grid">
-                        <div
-                            class="project-card dev bg-white rounded-3xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col md:flex-row animate-on-scroll">
-                            <div class="w-full md:w-2/5 h-56 md:h-auto relative flex-shrink-0"><img
-                                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
-                                    alt="E-commerce" class="w-full h-full object-cover">
-                                <div
-                                    class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded text-xs font-bold text-itg-lightblue uppercase">
-                                    Développement</div>
+                <!-- Grille projets -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+                    <!-- Projet 1 -->
+                    <div
+                        class="project-card dev bg-white rounded-3xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col h-full animate-on-scroll">
+                        <div class="w-full h-52 sm:h-56 relative flex-shrink-0 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
+                                alt="Plateforme E-commerce B2B" class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-itg-lightblue uppercase tracking-wider shadow-sm">
+                                Développement</div>
+                        </div>
+                        <div class="p-6 flex flex-col justify-between flex-1">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">Plateforme E-commerce B2B<br><span
+                                        class="text-gray-400 font-normal text-sm">IndustrieX</span></h3>
+                                <div class="space-y-2.5 text-sm">
+                                    <div><span class="font-bold text-itg-blue text-xs uppercase">Contexte — </span><span
+                                            class="text-gray-600">Gestion des commandes par e-mail et Excel, erreurs fréquentes et retards d'expédition.</span></div>
+                                    <div><span class="font-bold text-itg-orange text-xs uppercase">Solution — </span><span
+                                            class="text-gray-600">Portail e-commerce B2B intégré à l'ERP, avec tarification dynamique et suivi en temps réel.</span></div>
+                                    <div><span class="font-bold text-green-600 text-xs uppercase">Résultat — </span><span
+                                            class="text-gray-600">−80% d'erreurs de commande · +35% de ventes B2B.</span></div>
+                                </div>
                             </div>
-                            <div class="p-7 flex flex-col justify-between">
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-900 mb-4">Plateforme E-commerce B2B<br><span
-                                            class="text-gray-400 font-normal text-base">IndustrieX</span></h3>
-                                    <div class="space-y-3 text-sm">
-                                        <div><span class="font-bold text-itg-blue text-xs uppercase">Contexte —
-                                            </span><span class="text-gray-600">Gestion des commandes par e-mail et
-                                                Excel, erreurs fréquentes et retards d'expédition.</span></div>
-                                        <div><span class="font-bold text-itg-orange text-xs uppercase">Solution —
-                                            </span><span class="text-gray-600">Portail e-commerce B2B intégré à l'ERP,
-                                                avec tarification dynamique et suivi en temps réel.</span></div>
-                                        <div><span class="font-bold text-green-600 text-xs uppercase">Résultat —
-                                            </span><span class="text-gray-600">−80% d'erreurs de commande · +35% de
-                                                ventes B2B.</span></div>
-                                    </div>
-                                </div>
-                                <div class="mt-4 pt-4 border-t border-gray-100 flex flex-wrap gap-2"><span
-                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">React</span><span
-                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">Node.js</span>
-                                </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100 flex flex-wrap gap-2">
+                                <span class="text-xs text-gray-500 font-mono bg-gray-50 px-2.5 py-1 rounded-md">React</span>
+                                <span class="text-xs text-gray-500 font-mono bg-gray-50 px-2.5 py-1 rounded-md">Node.js</span>
                             </div>
                         </div>
-                        <div
-                            class="project-card secu bg-white rounded-3xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col md:flex-row animate-on-scroll">
-                            <div class="w-full md:w-2/5 h-56 md:h-auto relative flex-shrink-0"><img
-                                    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80"
-                                    alt="MAN" class="w-full h-full object-cover">
-                                <div
-                                    class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded text-xs font-bold text-green-600 uppercase">
-                                    Réseau & Sécu</div>
+                    </div>
+
+                    <!-- Projet 2 -->
+                    <div
+                        class="project-card secu bg-white rounded-3xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col h-full animate-on-scroll">
+                        <div class="w-full h-52 sm:h-56 relative flex-shrink-0 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80"
+                                alt="Refonte Infrastructure LAN/MAN" class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-green-600 uppercase tracking-wider shadow-sm">
+                                Réseau &amp; Sécu</div>
+                        </div>
+                        <div class="p-6 flex flex-col justify-between flex-1">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">Refonte Infrastructure LAN/MAN<br><span
+                                        class="text-gray-400 font-normal text-sm">Banque Nationale</span></h3>
+                                <div class="space-y-2.5 text-sm">
+                                    <div><span class="font-bold text-itg-blue text-xs uppercase">Contexte — </span><span
+                                            class="text-gray-600">Réseau multi-sites vieillissant, lent et vulnérable aux attaques.</span></div>
+                                    <div><span class="font-bold text-itg-orange text-xs uppercase">Solution — </span><span
+                                            class="text-gray-600">Réseau fibre inter-sites ultra-sécurisé avec redondance totale et supervision 24/7.</span></div>
+                                    <div><span class="font-bold text-green-600 text-xs uppercase">Résultat — </span><span
+                                            class="text-gray-600">Disponibilité 99,99% · 0 intrusion réussie.</span></div>
+                                </div>
                             </div>
-                            <div class="p-7 flex flex-col justify-between">
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-900 mb-4">Refonte Infrastructure
-                                        LAN/MAN<br><span class="text-gray-400 font-normal text-base">Banque
-                                            Nationale</span></h3>
-                                    <div class="space-y-3 text-sm">
-                                        <div><span class="font-bold text-itg-blue text-xs uppercase">Contexte —
-                                            </span><span class="text-gray-600">Réseau multi-sites vieillissant, lent et
-                                                vulnérable aux attaques.</span></div>
-                                        <div><span class="font-bold text-itg-orange text-xs uppercase">Solution —
-                                            </span><span class="text-gray-600">Réseau fibre inter-sites ultra-sécurisé
-                                                avec redondance totale et supervision 24/7.</span></div>
-                                        <div><span class="font-bold text-green-600 text-xs uppercase">Résultat —
-                                            </span><span class="text-gray-600">Disponibilité 99,99% · 0 intrusion
-                                                réussie.</span></div>
-                                    </div>
-                                </div>
-                                <div class="mt-4 pt-4 border-t border-gray-100 flex flex-wrap gap-2"><span
-                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">Cisco</span><span
-                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">Fortinet</span>
-                                </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100 flex flex-wrap gap-2">
+                                <span class="text-xs text-gray-500 font-mono bg-gray-50 px-2.5 py-1 rounded-md">Cisco</span>
+                                <span class="text-xs text-gray-500 font-mono bg-gray-50 px-2.5 py-1 rounded-md">Fortinet</span>
                             </div>
                         </div>
-                        <div
-                            class="project-card ia dev bg-white rounded-3xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col md:flex-row animate-on-scroll">
-                            <div class="w-full md:w-2/5 h-56 md:h-auto relative flex-shrink-0"><img
-                                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
-                                    alt="IA" class="w-full h-full object-cover">
-                                <div
-                                    class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded text-xs font-bold text-itg-orange uppercase">
-                                    IA & Automat.</div>
+                    </div>
+
+                    <!-- Projet 3 -->
+                    <div
+                        class="project-card ia dev bg-white rounded-3xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col h-full animate-on-scroll">
+                        <div class="w-full h-52 sm:h-56 relative flex-shrink-0 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
+                                alt="Automatisation des stocks" class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-itg-orange uppercase tracking-wider shadow-sm">
+                                IA &amp; Automat.</div>
+                        </div>
+                        <div class="p-6 flex flex-col justify-between flex-1">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">Automatisation des stocks<br><span
+                                        class="text-gray-400 font-normal text-sm">AgriTech CI</span></h3>
+                                <div class="space-y-2.5 text-sm">
+                                    <div><span class="font-bold text-itg-blue text-xs uppercase">Contexte — </span><span
+                                            class="text-gray-600">Gestion des stocks périssables manuelle, lourdes pertes par manque de visibilité.</span></div>
+                                    <div><span class="font-bold text-itg-orange text-xs uppercase">Solution — </span><span
+                                            class="text-gray-600">Système IoT couplé à une IA prédictive alertant les gestionnaires automatiquement.</span></div>
+                                    <div><span class="font-bold text-green-600 text-xs uppercase">Résultat — </span><span
+                                            class="text-gray-600">−40% de pertes de stocks dès le 1er trimestre.</span></div>
+                                </div>
                             </div>
-                            <div class="p-7 flex flex-col justify-between">
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-900 mb-4">Automatisation des stocks<br><span
-                                            class="text-gray-400 font-normal text-base">AgriTech CI</span></h3>
-                                    <div class="space-y-3 text-sm">
-                                        <div><span class="font-bold text-itg-blue text-xs uppercase">Contexte —
-                                            </span><span class="text-gray-600">Gestion des stocks périssables manuelle,
-                                                lourdes pertes par manque de visibilité.</span></div>
-                                        <div><span class="font-bold text-itg-orange text-xs uppercase">Solution —
-                                            </span><span class="text-gray-600">Système IoT couplé à une IA prédictive
-                                                alertant les gestionnaires automatiquement.</span></div>
-                                        <div><span class="font-bold text-green-600 text-xs uppercase">Résultat —
-                                            </span><span class="text-gray-600">−40% de pertes de stocks dès le 1er
-                                                trimestre.</span></div>
-                                    </div>
-                                </div>
-                                <div class="mt-4 pt-4 border-t border-gray-100 flex flex-wrap gap-2"><span
-                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">Python
-                                        ML</span><span
-                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">IoT</span>
-                                </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100 flex flex-wrap gap-2">
+                                <span class="text-xs text-gray-500 font-mono bg-gray-50 px-2.5 py-1 rounded-md">Python ML</span>
+                                <span class="text-xs text-gray-500 font-mono bg-gray-50 px-2.5 py-1 rounded-md">IoT</span>
                             </div>
                         </div>
-                        <div
-                            class="project-card form bg-white rounded-3xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col md:flex-row animate-on-scroll">
-                            <div class="w-full md:w-2/5 h-56 md:h-auto relative flex-shrink-0"><img
-                                    src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"
-                                    alt="Formation" class="w-full h-full object-cover">
-                                <div
-                                    class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded text-xs font-bold text-purple-600 uppercase">
-                                    Formation</div>
+                    </div>
+
+                    <!-- Projet 4 -->
+                    <div
+                        class="project-card form bg-white rounded-3xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col h-full animate-on-scroll">
+                        <div class="w-full h-52 sm:h-56 relative flex-shrink-0 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"
+                                alt="Upskilling Cybersécurité" class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-purple-600 uppercase tracking-wider shadow-sm">
+                                Formation</div>
+                        </div>
+                        <div class="p-6 flex flex-col justify-between flex-1">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">Upskilling Cybersécurité<br><span
+                                        class="text-gray-400 font-normal text-sm">Ministère Public</span></h3>
+                                <div class="space-y-2.5 text-sm">
+                                    <div><span class="font-bold text-itg-blue text-xs uppercase">Contexte — </span><span
+                                            class="text-gray-600">Agents mal formés face à l'augmentation critique des tentatives de phishing.</span></div>
+                                    <div><span class="font-bold text-itg-orange text-xs uppercase">Solution — </span><span
+                                            class="text-gray-600">Programme intensif 3 mois : théorie + simulations de crises pour 20 agents.</span></div>
+                                    <div><span class="font-bold text-green-600 text-xs uppercase">Résultat — </span><span
+                                            class="text-gray-600">95% certifiés · −90% de clics sur emails malveillants simulés.</span></div>
+                                </div>
                             </div>
-                            <div class="p-7 flex flex-col justify-between">
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-900 mb-4">Upskilling Cybersécurité<br><span
-                                            class="text-gray-400 font-normal text-base">Ministère Public</span></h3>
-                                    <div class="space-y-3 text-sm">
-                                        <div><span class="font-bold text-itg-blue text-xs uppercase">Contexte —
-                                            </span><span class="text-gray-600">Agents mal formés face à l'augmentation
-                                                critique des tentatives de phishing.</span></div>
-                                        <div><span class="font-bold text-itg-orange text-xs uppercase">Solution —
-                                            </span><span class="text-gray-600">Programme intensif 3 mois : théorie +
-                                                simulations de crises pour 150 agents.</span></div>
-                                        <div><span class="font-bold text-green-600 text-xs uppercase">Résultat —
-                                            </span><span class="text-gray-600">95% certifiés · −90% de clics sur emails
-                                                malveillants simulés.</span></div>
-                                    </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100 flex flex-wrap gap-2">
+                                <span class="text-xs text-gray-500 font-mono bg-gray-50 px-2.5 py-1 rounded-md">Ateliers</span>
+                                <span class="text-xs text-gray-500 font-mono bg-gray-50 px-2.5 py-1 rounded-md">Simulations</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 5 -->
+                    <div
+                        class="project-card dev bg-white rounded-3xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col h-full animate-on-scroll">
+                        <div class="w-full h-52 sm:h-56 relative flex-shrink-0 overflow-hidden">
+                            <img src="public/images/candidats.PNG"
+                                alt="Développement web - cvconnectPlatform" class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-itg-lightblue uppercase tracking-wider shadow-sm">
+                                Développement</div>
+                        </div>
+                        <div class="p-6 flex flex-col justify-between flex-1">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">Développement Web<br><span
+                                        class="text-gray-400 font-normal text-sm">cvconnectPlatform</span></h3>
+                                <div class="space-y-2.5 text-sm">
+                                    <div><span class="font-bold text-itg-blue text-xs uppercase">Contexte — </span><span
+                                            class="text-gray-600">La gestion des CV candidats des agences trop compliquée et difficultés de recrutement.</span></div>
+                                    <div><span class="font-bold text-itg-orange text-xs uppercase">Solution — </span><span
+                                            class="text-gray-600">Gestion et recrutement simplifiés en un clic.</span></div>
+                                    <div><span class="font-bold text-green-600 text-xs uppercase">Résultat — </span><span
+                                            class="text-gray-600">95% satisfait et + de 50 candidats déjà sélectionnés.</span></div>
+                                    <div class="pt-1.5"><span class="text-gray-500 text-xs font-semibold uppercase">Lien — </span><a href="https://cvconnect.com.bi" target="_blank" rel="noopener noreferrer" class="text-itg-blue font-semibold hover:underline">cvconnect.com.bi</a></div>
                                 </div>
-                                <div class="mt-4 pt-4 border-t border-gray-100 flex flex-wrap gap-2"><span
-                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">Ateliers</span><span
-                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">Simulations</span>
-                                </div>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100 flex flex-wrap gap-2">
+                                <span class="text-xs text-gray-500 font-mono bg-gray-50 px-2.5 py-1 rounded-md">Application web</span>
+                                <span class="text-xs text-gray-500 font-mono bg-gray-50 px-2.5 py-1 rounded-md">Plateforme</span>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div
-                            class="project-card form bg-white rounded-3xl overflow-hidden shadow-sm hover-lift border border-gray-100 flex flex-col md:flex-row animate-on-scroll">
-                            <div class="w-full md:w-2/5 h-56 md:h-auto relative flex-shrink-0">
-                                  
-                                   <img src="public/images/candidats.PNG"
-                                    alt="Formation" class="w-full h-full object-cover">
-                                <div
-                                    class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded text-xs font-bold text-purple-600 uppercase">
-                                    developpement</div>
-                            </div>
-                            <div class="p-7 flex flex-col justify-between">
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-900 mb-4">developpement web<br><span
-                                            class="text-gray-400 font-normal text-base">cvconnectPlatform</span></h3>
-                                    <div class="space-y-3 text-sm">
-                                        <div><span class="font-bold text-itg-blue text-xs uppercase">Contexte —
-                                            </span><span class="text-gray-600">La gestion des CV candidats des agences trop
-                                                compliqué et difficultés de recrutement par leurs partenaires etrangers .</span></div>
-                                        <div><span class="font-bold text-itg-orange text-xs uppercase">Solution —
-                                            </span><span class="text-gray-600">gestion et recrutement est maintenant sumplifié en un clic.</span></div>
-                                        <div><span class="font-bold text-green-600 text-xs uppercase">Résultat —
-                                            </span><span class="text-gray-600">95% satisfait et + de 50 candidats déjà selectionnés</span>
-                                        </div>
-                                        <span>Consultezle lien 
-                                           <span class="text-blue-600"><a href="https://cvconnect.com.bi">cvconnect.com.bi</span>
-                                    </div>
-                                </div>
-                                <div class="mt-4 pt-4 border-t border-gray-100 flex flex-wrap gap-2"><span
-                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">Application web </span><span
-                                        class="text-xs text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">réalisée</span>
-                                </div>
-                            </div>
-                        </div>
         </section>
 
         <section class="py-20 bg-itg-blue text-center relative overflow-hidden">
@@ -1624,7 +1626,7 @@
                         <h2 class="text-3xl md:text-4xl font-bold text-itg-blue mb-6">Notre mission</h2>
                         <p class="text-lg text-gray-600">Accompagner les entreprises et les talents dans leur
                             transformation digitale, en proposant des solutions technologiques innovantes, fiables et
-                            adaptées à leurs besoins réels — du conseil stratégique à la mise en œuvre technique.</p>
+                            adaptées à leurs besoins réels du conseil stratégique à la mise en œuvre technique.</p>
                     </div>
                     <div class="lg:w-1/2 relative">
                         <div class="absolute inset-0 bg-itg-blue opacity-10 transform -rotate-3 rounded-3xl"></div><img
@@ -1705,54 +1707,71 @@
                         formateurs et techniciens.
                     </p>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="bg-itg-lightbg rounded-2xl overflow-hidden shadow-sm group animate-on-scroll">
-                        <div class="h-64 overflow-hidden"><img
-                                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80"
-                                alt="DG"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+
+                    <!-- john — fondateur -->
+                    <div class="bg-gradient-to-b from-itg-blue/5 to-white rounded-2xl overflow-hidden shadow-md group animate-on-scroll border-2 border-itg-blue/20 relative">
+                        <div class="absolute top-3 right-3 z-10">
+                            <span class="bg-itg-blue text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">Fondateur</span>
                         </div>
-                        <div class="p-6 text-center">
-                            <h3 class="text-xl font-bold text-gray-900">Jean-Marc T.</h3>
-                            <p class="text-itg-orange text-sm font-medium">Directeur Général</p>
+                        <div class="h-64 overflow-hidden"><img
+                                src="public\images\john.jpeg"
+                                alt="Ir john"
+                                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 text-center">
+                            <h3 class="text-lg font-bold text-gray-900">John Izobishitsa</h3>
+                            <p class="text-itg-blue text-sm font-semibold mt-1">Ir en Robotique</p>
+                            <p class="text-itg-orange text-sm font-medium mt-1">Fondateur d'entreprise ITG Ltd</p>
                         </div>
                     </div>
+
+                    <!-- Ir desire -->
                     <div class="bg-itg-lightbg rounded-2xl overflow-hidden shadow-sm group animate-on-scroll"
                         style="animation-delay:0.1s">
+                         <div class="absolute top-3 right-3 z-10">
+                            <span class="bg-itg-blue text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">Concepteur</span>
+                        </div>
                         <div class="h-64 overflow-hidden"><img
-                                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
-                                alt="CTO"
+                                src="public\images\desire.png"
+                                alt="desire"
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
-                        <div class="p-6 text-center">
-                            <h3 class="text-xl font-bold text-gray-900">Sarah B.</h3>
-                            <p class="text-itg-orange text-sm font-medium">Directrice Technique (CTO)</p>
+                        <div class="p-5 text-center">
+                            <h3 class="text-lg font-bold text-gray-900">Desire Nihorimbere</h3>
+                             <p class="text-itg-blue text-sm font-semibold mt-1">Ir en BD Administrator & apps development</p>
+                            <p class="text-itg-orange text-sm font-medium mt-1">Directeur Général</p>
                         </div>
                     </div>
-                    <div class="bg-itg-lightbg rounded-2xl overflow-hidden shadow-sm group animate-on-scroll"
-                        style="animation-delay:0.2s">
-                        <div class="h-64 overflow-hidden"><img
-                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80"
-                                alt="IA"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="p-6 text-center">
-                            <h3 class="text-xl font-bold text-gray-900">David K.</h3>
-                            <p class="text-itg-orange text-sm font-medium">Lead Ingénieur IA</p>
-                        </div>
-                    </div>
+
+                    <!-- Olivier Ndayishimiye -->
                     <div class="bg-itg-lightbg rounded-2xl overflow-hidden shadow-sm group animate-on-scroll"
                         style="animation-delay:0.3s">
                         <div class="h-64 overflow-hidden"><img
-                                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80"
-                                alt="Form."
+                                src="public/images/team_olivier.png"
+                                alt="Olivier Ndayishimiye"
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
-                        <div class="p-6 text-center">
-                            <h3 class="text-xl font-bold text-gray-900">Fatima S.</h3>
-                            <p class="text-itg-orange text-sm font-medium">Responsable Formations</p>
+                        <div class="p-5 text-center">
+                            <h3 class="text-lg font-bold text-gray-900">Olivier Ndayishimiye</h3>
+                            <p class="text-itg-orange text-sm font-medium mt-1">Expert Réseau & Sécurité</p>
                         </div>
                     </div>
+
+                    <!-- Grace Iradukunda -->
+                    <div class="bg-itg-lightbg rounded-2xl overflow-hidden shadow-sm group animate-on-scroll"
+                        style="animation-delay:0.4s">
+                        <div class="h-64 overflow-hidden"><img
+                                src="public/images/team_grace.png"
+                                alt="Grace Iradukunda"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 text-center">
+                            <h3 class="text-lg font-bold text-gray-900">Grace Iradukunda</h3>
+                            <p class="text-itg-orange text-sm font-medium mt-1">Responsable des Formations</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
